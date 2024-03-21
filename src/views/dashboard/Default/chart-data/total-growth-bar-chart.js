@@ -8,11 +8,11 @@ const chartData = {
       id: 'bar-chart',
       stacked: true,
       toolbar: {
-        show: true
+        show: false,
       },
       zoom: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     responsive: [
       {
@@ -21,20 +21,27 @@ const chartData = {
           legend: {
             position: 'bottom',
             offsetX: -10,
-            offsetY: 0
-          }
-        }
-      }
+            offsetY: 0,
+          },
+        },
+      },
     ],
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '50%'
-      }
+        columnWidth: '50%',
+      },
     },
     xaxis: {
       type: 'category',
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      categories: [
+        'Até 30 Dias',
+        'De 61 a 90 Dias',
+        'De 181 a 365 Dias',
+        'De 1 a 2 Anos',
+        'De 2 a 3 Anos',
+        'Mais de 3 Anos',
+      ],
     },
     legend: {
       show: true,
@@ -43,45 +50,45 @@ const chartData = {
       position: 'bottom',
       offsetX: 20,
       labels: {
-        useSeriesColors: false
+        useSeriesColors: false,
       },
       markers: {
         width: 16,
         height: 16,
-        radius: 5
+        radius: 5,
       },
       itemMargin: {
         horizontal: 15,
-        vertical: 8
-      }
+        vertical: 8,
+      },
     },
     fill: {
-      type: 'solid'
+      type: 'solid',
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     grid: {
-      show: true
-    }
+      show: true,
+    },
   },
   series: [
     {
       name: 'Investment',
-      data: [35, 125, 35, 35, 35, 80, 35, 20, 35, 45, 15, 75]
+      data: [9000, 6000, 3000, 30000, 35, 12000],
     },
     {
       name: 'Loss',
-      data: [35, 15, 15, 35, 65, 40, 80, 25, 15, 85, 25, 75]
+      data: [400, 4000, 500, 15000, 65, 5000],
     },
     {
       name: 'Profit',
-      data: [35, 145, 35, 35, 20, 105, 100, 10, 65, 45, 30, 10]
+      data: [400, 0, 35, 700, 0, 900],
     },
     {
       name: 'Maintenance',
-      data: [0, 0, 75, 0, 0, 115, 0, 0, 0, 0, 150, 0]
-    }
-  ]
+      data: [100, 0, 75, 3000, 2000, 300],
+    },
+  ],
 };
 export default chartData;
