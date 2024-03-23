@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 
-// material-ui
 import { Grid } from '@mui/material';
 
-// project imports
+import { gridSpacing } from 'store/constant';
+import BillingBalanceByMaturityRange from './BillingBalanceByMaturityRange';
 import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalIncomeDarkCard from './TotalIncomeDarkCard';
 import TotalIncomeLightCard from './TotalIncomeLightCard';
-import TotalGrowthBarChart from './TotalGrowthBarChart';
-import { gridSpacing } from 'store/constant';
+import TotalOrderLineChartCard from './TotalOrderLineChartCard';
+import WalletCollectionBalance from './WalletCollectionBalance';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -45,7 +44,10 @@ const Dashboard = () => {
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12} md={8}>
-            <TotalGrowthBarChart isLoading={isLoading} />
+            <BillingBalanceByMaturityRange isLoading={isLoading} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <WalletCollectionBalance isLoading={isLoading} />
           </Grid>
           <Grid item xs={12} md={4}>
             <PopularCard isLoading={isLoading} />

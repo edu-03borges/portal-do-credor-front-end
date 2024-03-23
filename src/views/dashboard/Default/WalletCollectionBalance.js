@@ -10,11 +10,11 @@ import Chart from 'react-apexcharts';
 
 import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
-import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
+import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 
-import chartData from './chart-data/total-growth-bar-chart';
+import chartData from './chart-data/wallet-collection-balance';
 
-const TotalGrowthBarChart = ({ isLoading }) => {
+const WalletCollectionBalance = ({ isLoading }) => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
 
@@ -79,7 +79,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <SkeletonTotalGrowthBarChart />
+        <GeneralSkeleton />
       ) : (
         <MainCard>
           <Grid container spacing={gridSpacing}>
@@ -93,11 +93,11 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                   <Grid container direction="column" spacing={1}>
                     <Grid item>
                       <Typography variant="subtitle2">
-                        Saldo em Cobrança por Faixa de Vencimento
+                        Saldo em Cobrança por Carteira
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant="h3">$2,324.00</Typography>
+                      <Typography variant="h3">Filiais</Typography>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -113,8 +113,8 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   );
 };
 
-TotalGrowthBarChart.propTypes = {
+WalletCollectionBalance.propTypes = {
   isLoading: PropTypes.bool,
 };
 
-export default TotalGrowthBarChart;
+export default WalletCollectionBalance;

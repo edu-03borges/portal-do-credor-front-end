@@ -7,12 +7,17 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| SKELETON TOTAL GROWTH BAR CHART ||============================== //
 
-const TotalGrowthBarChart = () => (
+const GraphicSkeleton = () => (
   <Card>
     <CardContent>
       <Grid container spacing={gridSpacing}>
         <Grid item xs={12}>
-          <Grid container alignItems="center" justifyContent="space-between" spacing={gridSpacing}>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            spacing={gridSpacing}
+          >
             <Grid item xs zeroMinWidth>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
@@ -36,4 +41,4 @@ const TotalGrowthBarChart = () => (
   </Card>
 );
 
-export default TotalGrowthBarChart;
+export default GraphicSkeleton;

@@ -85,10 +85,6 @@ const chartData = {
       name: 'Profit',
       data: [400, 0, 35, 700, 0, 900],
     },
-    {
-      name: 'Maintenance',
-      data: [100, 0, 75, 3000, 2000, 300],
-    },
   ],
 };
 export default chartData;
