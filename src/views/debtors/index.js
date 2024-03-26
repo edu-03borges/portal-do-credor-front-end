@@ -1,20 +1,14 @@
 /* eslint-disable no-constant-condition */
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
   Button,
   Container,
   Grid,
-  InputAdornment,
   MenuItem,
-  Pagination,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   TextField,
 } from '@mui/material';
+import { DataGridPro } from '@mui/x-data-grid-pro';
 import { useEffect, useState } from 'react';
 import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
@@ -22,47 +16,63 @@ import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 
 const App = () => {
   const [isLoading, setLoading] = useState(true);
-  const [devedores, setDevedores] = useState([]);
   const [filtro, setFiltro] = useState({
     localizarPor: 'Processo',
     situacaoProcesso: 'Somente Ativos',
     carteiraCredor: '',
     credor: '',
   });
-  const [pagina, setPagina] = useState(1);
-  const [registrosPorPagina, setRegistrosPorPagina] = useState(10);
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'firstName',
+      headerName: 'First name',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'lastName',
+      headerName: 'Last name',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'age',
+      headerName: 'Age',
+      type: 'number',
+      width: 110,
+      editable: true,
+    },
+    {
+      field: 'fullName',
+      headerName: 'Full name',
+      description: 'This column has a value getter and is not sortable.',
+      sortable: false,
+      width: 160,
+      valueGetter: (value, row) =>
+        `${row.firstName || ''} ${row.lastName || ''}`,
+    },
+  ];
+
+  const rows = [
+    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
+    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
+    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
+    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
+    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  ];
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    const devedoresExemplo = [
-      {
-        processo: '123456789',
-        carteiraCredor: 'Carteira X',
-        nomeRazaoSocial: 'Nome do devedor',
-        cnpjCpf: '123.456.789-00',
-        cidade: 'Cidade',
-        uf: 'UF',
-        valor: 1000.0,
-        statusProcesso: 'Ativo',
-      },
-      // ...
-    ];
-    setDevedores(devedoresExemplo);
-  }, []);
-
   const handleFiltroChange = (e) => {
     setFiltro({ ...filtro, [e.target.name]: e.target.value });
-  };
-
-  const handlePaginaChange = (e, novaPagina) => {
-    setPagina(novaPagina);
-  };
-
-  const handleRegistrosPorPaginaChange = (e) => {
-    setRegistrosPorPagina(e.target.value);
   };
 
   return (
@@ -70,129 +80,118 @@ const App = () => {
       {isLoading ? (
         <GeneralSkeleton />
       ) : (
-        <MainCard>
-          <Grid container spacing={gridSpacing}>
-            <Container maxWidth="xl">
-              <h1>Lista de Devedores</h1>
-              <Box sx={{ mb: 2 }}>
-                <TextField
-                  label="Localizar por"
-                  name="localizarPor"
-                  value={filtro.localizarPor}
-                  onChange={handleFiltroChange}
-                  select
-                  SelectProps={{
-                    variant: 'outlined',
-                  }}
-                  InputAdornment={
-                    <InputAdornment position="end">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-search"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.043-.002.107-.046.146A6.5 6.5 0 1 0 11.742 10.344zM12.5 7a5.5 5.5 0 1 0-11 0 5.5 5.5 0 0 0 11 0zM3 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z" />
-                      </svg>
-                    </InputAdornment>
-                  }
-                >
-                  <MenuItem value="Processo">Processo</MenuItem>
-                  <MenuItem value="Nome">Nome</MenuItem>
-                  <MenuItem value="CPF">CPF</MenuItem>
-                </TextField>
-                <TextField
-                  label="Situação de Processo"
-                  name="situacaoProcesso"
-                  value={filtro.situacaoProcesso}
-                  onChange={handleFiltroChange}
-                  select
-                  SelectProps={{
-                    variant: 'outlined',
-                  }}
-                  sx={{ ml: 2 }}
-                >
-                  <MenuItem value="Somente Ativos">Somente Ativos</MenuItem>
-                  <MenuItem value="Todos">Todos</MenuItem>
-                </TextField>
-              </Box>
-              <Box sx={{ mb: 2 }}>
-                <TextField
-                  label="Carteira do Credor"
-                  name="carteiraCredor"
-                  value={filtro.carteiraCredor}
-                  onChange={handleFiltroChange}
-                  variant="outlined"
-                />
-                <TextField
-                  label="Credor"
-                  name="credor"
-                  value={filtro.credor}
-                  onChange={handleFiltroChange}
-                  variant="outlined"
-                  sx={{ ml: 2 }}
-                />
-                <Button variant="contained" sx={{ ml: 2 }}>
-                  Pesquisar
-                </Button>
-              </Box>
-              <TableContainer>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Processo</TableCell>
-                      <TableCell>Carteira do Credor</TableCell>
-                      <TableCell>Nome/Razão Social</TableCell>
-                      <TableCell>CNPJ/CPF</TableCell>
-                      <TableCell>Cidade</TableCell>
-                      <TableCell>UF</TableCell>
-                      <TableCell>Valor</TableCell>
-                      <TableCell>Status do Processo</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {!devedores
-                      ? []
-                      : devedores.map((devedor) => (
-                          <TableRow key={devedor.processo}>
-                            <TableCell>{devedor.processo}</TableCell>
-                            <TableCell>{devedor.carteiraCredor}</TableCell>
-                            <TableCell>{devedor.nomeRazaoSocial}</TableCell>
-                            <TableCell>{devedor.cnpjCpf}</TableCell>
-                            <TableCell>{devedor.cidade}</TableCell>
-                            <TableCell>{devedor.uf}</TableCell>
-                            <TableCell>{devedor.valor}</TableCell>
-                            <TableCell>{devedor.statusProcesso}</TableCell>
-                          </TableRow>
-                        ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Pagination
-                  count={10} // Adicione o número total de páginas aqui
-                  page={pagina}
-                  onChange={handlePaginaChange}
-                  color="primary"
-                />
-                <TextField
-                  select
-                  label="Registros por Página"
-                  value={registrosPorPagina}
-                  onChange={handleRegistrosPorPaginaChange}
-                  variant="outlined"
-                  sx={{ ml: 2 }}
-                >
-                  <MenuItem value={10}>10</MenuItem>
-                  <MenuItem value={25}>25</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
-                </TextField>
-              </Box>
-            </Container>
-          </Grid>
-        </MainCard>
+        <>
+          <Container maxWidth="xl">
+            <h1>Lista de Devedores</h1>
+          </Container>
+          <MainCard>
+            <Grid container spacing={gridSpacing}>
+              <Container maxWidth="xl">
+                <Box sx={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
+                  <TextField
+                    label="Unidades"
+                    name="uniteds"
+                    value={filtro.localizarPor}
+                    onChange={handleFiltroChange}
+                    select
+                    SelectProps={{
+                      variant: 'outlined',
+                    }}
+                    sx={{ width: '45%' }}
+                  >
+                    <MenuItem value="Unidade1">Unidadde 1</MenuItem>
+                    <MenuItem value="Unidade1">Unidade 2</MenuItem>
+                  </TextField>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
+                  <TextField
+                    label="Localizar por"
+                    name="localizarPor"
+                    value={filtro.localizarPor}
+                    onChange={handleFiltroChange}
+                    select
+                    SelectProps={{
+                      variant: 'outlined',
+                    }}
+                    sx={{ width: '15%' }}
+                  >
+                    <MenuItem value="Processo">Processo</MenuItem>
+                    <MenuItem value="Nome">Nome</MenuItem>
+                    <MenuItem value="CPF">CPF</MenuItem>
+                  </TextField>
+
+                  <TextField
+                    label="Localizar..."
+                    name="search"
+                    text
+                    SelectProps={{
+                      variant: 'outlined',
+                    }}
+                    sx={{ width: '30%' }}
+                  />
+
+                  <TextField
+                    label="Situação do Processo"
+                    name="situationProc"
+                    value={filtro.localizarPor}
+                    onChange={handleFiltroChange}
+                    select
+                    SelectProps={{
+                      variant: 'outlined',
+                    }}
+                    sx={{ width: '18%' }}
+                  >
+                    <MenuItem value="Processo">Todos</MenuItem>
+                    <MenuItem value="Nome">Somente Ativos</MenuItem>
+                    <MenuItem value="CPF">Somente Encerrados</MenuItem>
+                  </TextField>
+
+                  <TextField
+                    label="Status do Processo"
+                    name="statusProc"
+                    value={filtro.localizarPor}
+                    onChange={handleFiltroChange}
+                    select
+                    SelectProps={{
+                      variant: 'outlined',
+                    }}
+                    sx={{ width: '18%' }}
+                  >
+                    <MenuItem value="Processo">Todos</MenuItem>
+                    <MenuItem value="Nome">01 - ACORDO</MenuItem>
+                    <MenuItem value="CPF">02 - QUITADO</MenuItem>
+                  </TextField>
+
+                  <Button
+                    variant="contained"
+                    //color="primary"
+                    startIcon={<SearchIcon />}
+                    sx={{ width: '15%' }}
+                  >
+                    Pesquisar
+                  </Button>
+                </Box>
+
+                <Box sx={{ height: 400, width: '100%', marginTop: '10px' }}>
+                  <DataGridPro
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                      pagination: {
+                        paginationModel: {
+                          pageSize: 5,
+                        },
+                      },
+                    }}
+                    pageSizeOptions={[5]}
+                    checkboxSelection
+                    disableRowSelectionOnClick
+                  />
+                </Box>
+              </Container>
+            </Grid>
+          </MainCard>
+        </>
       )}
     </>
   );
