@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
@@ -7,6 +6,7 @@ import {
   Grid,
   MenuItem,
   TextField,
+  Typography,
 } from '@mui/material';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import { useEffect, useState } from 'react';
@@ -24,47 +24,37 @@ const App = () => {
   });
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'PROCESSO', headerName: 'PROCESSO', width: 130 },
+    { field: 'UNIDADE', headerName: 'UNIDADE', width: 250 },
     {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
-      editable: true,
+      field: 'NOME_RAZAO_SOCIAL',
+      headerName: 'NOME / RAZÃO SOCIAL',
+      width: 320,
     },
+    { field: 'CPF_CNPJ', headerName: 'CPF / CNPJ', width: 150 },
+    { field: 'CIDADE', headerName: 'CIDADE', width: 150 },
+    { field: 'UF', headerName: 'UF', width: 100 },
+    { field: 'EM_COBRANCA', headerName: 'EM COBRANÇA', width: 150 },
     {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
-      editable: true,
+      field: 'STATUS_DO_PROCESSO',
+      headerName: 'STATUS DO PROCESSO',
+      width: 200,
     },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
-    },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (value, row) =>
-        `${row.firstName || ''} ${row.lastName || ''}`,
-    },
+    { field: 'MENU', headerName: 'MENU', width: 100 },
   ];
 
   const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    {
+      id: 1,
+      PROCESSO: '215/14602',
+      UNIDADE: 'ALISSON_CREDOR (JURIDICO)',
+      NOME_RAZAO_SOCIAL: 'ACELINA MARIA DA CONCEICAO LEITE SILVA',
+      CPF_CNPJ: '71955631115',
+      CIDADE: 'TUBARÃO',
+      UF: 'GO',
+      EM_COBRANCA: 'R$ 3.930,00',
+      STATUS_DO_PROCESSO: '01 - ACORDO',
+    },
   ];
 
   useEffect(() => {
@@ -81,13 +71,18 @@ const App = () => {
         <GeneralSkeleton />
       ) : (
         <>
-          <Container maxWidth="xl">
-            <h1>Lista de Devedores</h1>
+          <Container
+            maxWidth="xxl"
+            sx={{ marginLeft: '-10px', marginBottom: '10px' }}
+          >
+            <Typography variant="h2" color="secondary">
+              Lista de Devedores
+            </Typography>
           </Container>
           <MainCard>
             <Grid container spacing={gridSpacing}>
-              <Container maxWidth="xl">
-                <Box sx={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
+              <Grid item xs={12}>
+                <Box sx={{ display: 'flex', gap: '20px' }}>
                   <TextField
                     label="Unidades"
                     name="uniteds"
@@ -97,7 +92,7 @@ const App = () => {
                     SelectProps={{
                       variant: 'outlined',
                     }}
-                    sx={{ width: '45%' }}
+                    sx={{ width: '45.6%' }}
                   >
                     <MenuItem value="Unidade1">Unidadde 1</MenuItem>
                     <MenuItem value="Unidade1">Unidade 2</MenuItem>
@@ -164,7 +159,6 @@ const App = () => {
 
                   <Button
                     variant="contained"
-                    //color="primary"
                     startIcon={<SearchIcon />}
                     sx={{ width: '15%' }}
                   >
@@ -184,11 +178,10 @@ const App = () => {
                       },
                     }}
                     pageSizeOptions={[5]}
-                    checkboxSelection
                     disableRowSelectionOnClick
                   />
                 </Box>
-              </Container>
+              </Grid>
             </Grid>
           </MainCard>
         </>

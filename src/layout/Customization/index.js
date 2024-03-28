@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import {
   Drawer,
   Fab,
@@ -14,39 +12,33 @@ import {
   RadioGroup,
   Slider,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { IconSettings } from '@tabler/icons-react';
 
-// third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-// project imports
-import SubCard from 'ui-component/cards/SubCard';
-import AnimateButton from 'ui-component/extended/AnimateButton';
 import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
 import { gridSpacing } from 'store/constant';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
 
-// concat 'px'
 function valueText(value) {
   return `${value}px`;
 }
-
-// ==============================|| LIVE CUSTOMIZATION ||============================== //
 
 const Customization = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
 
-  // drawer on/off
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
     setOpen(!open);
   };
 
-  // state - border radius
-  const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
+  const [borderRadius, setBorderRadius] = useState(6);
   const handleBorderRadius = (event, newValue) => {
     setBorderRadius(newValue);
   };
@@ -107,7 +99,7 @@ const Customization = () => {
             top: '25%',
             position: 'fixed',
             right: 10,
-            zIndex: theme.zIndex.speedDial
+            zIndex: theme.zIndex.speedDial,
           }}
         >
           <AnimateButton type="rotate">
@@ -124,8 +116,8 @@ const Customization = () => {
         open={open}
         PaperProps={{
           sx: {
-            width: 280
-          }
+            width: 280,
+          },
         }}
       >
         <PerfectScrollbar component="div">
@@ -146,7 +138,9 @@ const Customization = () => {
                       label="Roboto"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                     <FormControlLabel
@@ -155,7 +149,9 @@ const Customization = () => {
                       label="Poppins"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                     <FormControlLabel
@@ -164,7 +160,9 @@ const Customization = () => {
                       label="Inter"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                   </RadioGroup>
@@ -174,7 +172,14 @@ const Customization = () => {
             <Grid item xs={12}>
               {/* border radius */}
               <SubCard title="Border Radius">
-                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
+                <Grid
+                  item
+                  xs={12}
+                  container
+                  spacing={2}
+                  alignItems="center"
+                  sx={{ mt: 2.5 }}
+                >
                   <Grid item>
                     <Typography variant="h6" color="secondary">
                       4px
@@ -195,8 +200,8 @@ const Customization = () => {
                       color="secondary"
                       sx={{
                         '& .MuiSlider-valueLabel': {
-                          color: 'secondary.light'
-                        }
+                          color: 'secondary.light',
+                        },
                       }}
                     />
                   </Grid>

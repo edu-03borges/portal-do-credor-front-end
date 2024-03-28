@@ -1,10 +1,24 @@
-// assets
-import { IconDashboard, IconUser } from '@tabler/icons-react';
+import {
+  IconArrowBack,
+  IconChartBar,
+  IconDashboard,
+  IconFileText,
+  IconFiles,
+  IconSearch,
+  IconTable,
+  IconUser,
+} from '@tabler/icons-react';
 
-// constant
-const icons = { IconDashboard, IconUser };
-
-// ==============================|| MENU ITEMS ||============================== //
+const icons = {
+  IconDashboard,
+  IconUser,
+  IconChartBar,
+  IconFileText,
+  IconTable,
+  IconArrowBack,
+  IconFiles,
+  IconSearch,
+};
 
 const menu = {
   id: 'menu',
@@ -25,6 +39,54 @@ const menu = {
       type: 'item',
       url: '/menu/debtors',
       icon: icons.IconUser,
+      breadcrumbs: false,
+    },
+    {
+      id: 'histories',
+      title: 'Históricos',
+      type: 'item',
+      url: '/',
+      icon: icons.IconChartBar,
+      breadcrumbs: false,
+    },
+    {
+      id: 'titles',
+      title: 'Títulos',
+      type: 'item',
+      url: '/',
+      icon: icons.IconFileText,
+      breadcrumbs: false,
+    },
+    {
+      id: 'rendering_of_accounts',
+      title: 'Prestação de Contas',
+      type: 'item',
+      url: '/',
+      icon: icons.IconTable,
+      breadcrumbs: false,
+    },
+    {
+      id: 'returns',
+      title: 'Devoluções',
+      type: 'item',
+      url: '/',
+      icon: icons.IconArrowBack,
+      breadcrumbs: false,
+    },
+    {
+      id: 'borderôs_for_billing',
+      title: 'Borderôs para Cobrança',
+      type: 'item',
+      url: '/',
+      icon: icons.IconFiles,
+      breadcrumbs: false,
+    },
+    {
+      id: 'document_query',
+      title: 'Consulta de Documento',
+      type: 'item',
+      url: '/',
+      icon: icons.IconSearch,
       breadcrumbs: false,
     },
   ],

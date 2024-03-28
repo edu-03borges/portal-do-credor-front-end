@@ -66,6 +66,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                       ...theme.typography.largeAvatar,
                       backgroundColor: theme.palette.warning.light,
                       color: theme.palette.warning.dark,
+                      cursor: 'default',
                     }}
                   >
                     <InfoIcon fontSize="inherit" />
@@ -102,14 +103,9 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                         }}
                       >
                         Telefones:
-                        <div style={{ marginLeft: 3 }}>
-                          <Typography variant="subtitle2">
-                            (48) 3632-3821
-                          </Typography>
-                          <Typography variant="subtitle2">
-                            (48) 98422-0475
-                          </Typography>
-                        </div>
+                        <Typography variant="subtitle2">
+                          (48) 3632-3821 | (48) 98422-0475
+                        </Typography>
                       </Typography>
                     </div>
                   }
