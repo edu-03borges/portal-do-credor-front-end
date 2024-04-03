@@ -45,7 +45,7 @@ const menu = {
       id: 'histories',
       title: 'Históricos',
       type: 'item',
-      url: '/',
+      url: '/menu/histories',
       icon: icons.IconChartBar,
       breadcrumbs: false,
     },

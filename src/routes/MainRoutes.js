@@ -13,7 +13,8 @@ const UtilsMaterialIcons = Loadable(
 const UtilsTablerIcons = Loadable(
   lazy(() => import('views/utilities/TablerIcons')),
 );
-const UtilsDebtors = Loadable(lazy(() => import('views/debtors/index')));
+const Debtors = Loadable(lazy(() => import('views/debtors')));
+const Histories = Loadable(lazy(() => import('views/histories')));
 
 const MainRoutes = {
   path: '/',
@@ -37,7 +38,16 @@ const MainRoutes = {
       children: [
         {
           path: '/menu/debtors',
-          element: <UtilsDebtors />,
+          element: <Debtors />,
+        },
+      ],
+    },
+    {
+      path: 'menu',
+      children: [
+        {
+          path: '/menu/histories',
+          element: <Histories />,
         },
       ],
     },

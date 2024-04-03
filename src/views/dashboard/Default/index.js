@@ -11,8 +11,6 @@ import TotalIncomeLightCard from './TotalIncomeLightCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import WalletCollectionBalance from './WalletCollectionBalance';
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
-
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
