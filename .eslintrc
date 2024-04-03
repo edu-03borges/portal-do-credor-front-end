@@ -1,109 +1,67 @@
 {
-  "root": true,
   "env": {
-    "browser": true,
-    "es2021": true,
-    "jest": true
+    "browser": true, // Define que o ambiente de execução é o navegador
+    "es2021": true, // Habilita as funcionalidades do ECMAScript 2021
+    "jest": true // Habilita as variáveis globais do Jest para testes unitários
   },
   "extends": [
-    "prettier",
-    "plugin:react/jsx-runtime",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react-hooks/recommended",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended", // Usa as configurações recomendadas para o React
+    "plugin:react-hooks/recommended", // Usa as configurações recomendadas para os hooks do React
+    "standard", // Usa as configurações padrão do StandardJS
+    "plugin:prettier/recommended", // Integra o Prettier ao ESLint para formatação automática de código
+    "plugin:@typescript-eslint/recommended" // Extensão recomendada do ESLint para projetos TypeScript
   ],
-  "settings": {
-    "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "fragment": "Fragment",
-      "version": "detect", 
-      "flowVersion": "0.53" 
-    },
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": ["node_modules", "src/"]
-      }
-    }
-  },
-  "ignorePatterns": [
-    "node_modules"
-  ],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser", // Indica ao ESLint qual parser ele deve usar para analisar o código TypeScript
   "parserOptions": {
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "impliedStrict": true,
-      "jsx": true
+      "jsx": true // Habilita o suporte para JSX
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    "ecmaVersion": "latest" // Define a versão mais recente do ECMAScript
+    // "sourceType": "module" // Indica que o código é ECMAScript de módulo
   },
-  "plugins": ["prettier", "react", "react-hooks", "jsx-a11y"],
+  "plugins": [
+    "react", // Adiciona suporte para o ESLint entender código React
+    "jsx-a11y", // Adiciona regras de acessibilidade JSX
+    "@typescript-eslint" // Indica ao ESLint que ele deve carregar e usar o plugin @typescript-eslint
+  ],
   "rules": {
-    "react/self-closing-comp": "error",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    "react/react-in-jsx-scope": "off",
-    "no-undef": "off",
-    "react/display-name": "off",
-    "react/jsx-filename-extension": "off",
-    "no-param-reassign": "off",
-    "react/prop-types": "off",
-    "react/require-default-props": "off",
-    "react/no-array-index-key": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/forbid-prop-types": "off",
-    "import/order": "off",
-    "import/no-cycle": "off",
-    "no-console": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "prefer-destructuring": "off",
-    "no-shadow": "off",
-    "semi": ["error", "always"],
-    "import/no-named-as-default": "off",
-    "import/no-extraneous-dependencies": "off",
-    "jsx-a11y/no-autofocus": "off",
-    "jsx-a11y/aria-props": "warn",
-    "jsx-a11y/aria-proptypes": "warn",
-    "jsx-a11y/aria-unsupported-elements": "warn",
-    "jsx-a11y/role-has-required-aria-props": "warn",
-    "jsx-a11y/role-supports-aria-props": "warn",
-    "react/no-unknown-property": "error",
-    "jsx-a11y/alt-text": [
-      "warn",
-      {
-        "elements": ["img"],
-        "img": ["Image"]
-      }
-    ],
-    "no-restricted-imports": [
+    "react/self-closing-comp": "error", // Requer componentes React sem tags de fechamento quando não têm filhos
+    "react/react-in-jsx-scope": "off", // Permite o uso de JSX sem importar React explicitamente
+    "react/prop-types": "off", // Desativa a verificação de prop-types para componentes React
+    "jsx-a11y/aria-props": "warn", // Avisa sobre propriedades ARIA inválidas
+    "jsx-a11y/aria-proptypes": "warn", // Avisa sobre tipos de propriedades ARIA inválidos
+    "jsx-a11y/aria-unsupported-elements": "warn", // Avisa sobre elementos não suportados por ARIA
+    "jsx-a11y/role-has-required-aria-props": "warn", // Avisa sobre elementos que precisam de propriedades ARIA obrigatórias
+    "jsx-a11y/role-supports-aria-props": "warn", // Avisa sobre elementos com papéis que não suportam propriedades ARIA
+    "react/no-unknown-property": "error", // Avisa sobre propriedades desconhecidas em elementos React
+    "prettier/prettier": [ // Configurações do Prettier integradas ao ESLint
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "printWidth": 100, // Largura máxima da linha
+        "tabWidth": 2, // Tamanho da tabulação
+        "singleQuote": true, // Usa aspas simples em vez de duplas
+        "trailingComma": "all", // Adiciona vírgula final em arrays e objetos literais
+        "arrowParens": "always", // Adiciona parênteses em torno dos argumentos de função de seta
+        "semi": true, // Exige ponto e vírgula no final das linhas
+        "endOfLine": "auto" // Usa a quebra de linha do sistema operacional
       }
     ],
-    "no-unused-vars": [
-      "error",
-      {
-        "ignoreRestSiblings": false
-      }
-    ],
-    "prettier/prettier": [
+    "jsx-a11y/alt-text": [ // Avisa sobre imagens sem texto alternativo
       "warn",
       {
-        "bracketSpacing": true,
-        "useTabs": false,
-        "printWidth": 100,
-        "tabWidth": 2,
-        "singleQuote": true,
-        "trailingComma": "all",
-        "arrowParens": "always",
-        "semi": true,
-        "endOfLine": "auto"
+        "elements": ["img"], // Verifica apenas elementos <img>
+        "img": ["Image"] // Avisa quando a propriedade alt estiver ausente ou vazia
       }
-    ]
-  }
+    ],
+    "semi": ["error", "always"] // Exige o uso de ponto e vírgula em todas as declarações
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Detecta automaticamente a versão do React para oferecer sugestões de linting apropriadas
+    },
+    "import/parsers": { // Define os parsers a serem usados para analisar importações
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"] // Define o parser para arquivos TypeScript e suas extensões
+    }
+  },
+  "ignorePatterns": ["node_modules"] // Ignora a análise de arquivos na pasta node_modules
 }
