@@ -1,70 +1,64 @@
-import { lazy } from 'react';
+import { lazy } from "react";
 
-import MainLayout from 'layout/MainLayout';
-import Loadable from 'ui-component/Loadable';
+import MainLayout from "layout/MainLayout";
+import Loadable from "ui-component/Loadable";
 
-const DashboardDefault = Loadable(
-  lazy(() => import('views/dashboard/Default')),
-);
+const DashboardDefault = Loadable(lazy(() => import("views/dashboard/Default")));
 
-const UtilsMaterialIcons = Loadable(
-  lazy(() => import('views/utilities/MaterialIcons')),
-);
-const UtilsTablerIcons = Loadable(
-  lazy(() => import('views/utilities/TablerIcons')),
-);
-const Debtors = Loadable(lazy(() => import('views/debtors')));
-const Histories = Loadable(lazy(() => import('views/histories')));
+const UtilsMaterialIcons = Loadable(lazy(() => import("views/utilities/MaterialIcons")));
+const UtilsTablerIcons = Loadable(lazy(() => import("views/utilities/TablerIcons")));
+const Debtors = Loadable(lazy(() => import("views/debtors")));
+const Histories = Loadable(lazy(() => import("views/histories")));
 
 const MainRoutes = {
-  path: '/',
+  path: "/",
   element: <MainLayout />,
   children: [
     {
-      path: '/',
+      path: "/",
       element: <DashboardDefault />,
     },
     {
-      path: 'menu',
+      path: "menu",
       children: [
         {
-          path: 'dashboard',
+          path: "dashboard",
           element: <DashboardDefault />,
         },
       ],
     },
     {
-      path: 'menu',
+      path: "menu",
       children: [
         {
-          path: '/menu/debtors',
+          path: "/menu/debtors",
           element: <Debtors />,
         },
       ],
     },
     {
-      path: 'menu',
+      path: "menu",
       children: [
         {
-          path: '/menu/histories',
+          path: "/menu/histories",
           element: <Histories />,
         },
       ],
     },
     {
-      path: 'icons',
+      path: "icons",
       children: [
         {
-          path: 'tabler-icons',
+          path: "tabler-icons",
           element: <UtilsTablerIcons />,
         },
       ],
     },
     {
-      path: 'icons',
+      path: "icons",
       children: [
         {
-          path: 'material-icons',
+          path: "material-icons",
           element: <UtilsMaterialIcons />,
         },
       ],

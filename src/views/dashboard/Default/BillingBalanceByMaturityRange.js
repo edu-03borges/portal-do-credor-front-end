@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import { Grid, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Grid, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-import ApexCharts from 'apexcharts';
-import Chart from 'react-apexcharts';
+import ApexCharts from "apexcharts";
+import Chart from "react-apexcharts";
 
-import { gridSpacing } from 'store/constant';
-import MainCard from 'ui-component/cards/MainCard';
-import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
+import { gridSpacing } from "store/constant";
+import MainCard from "ui-component/cards/MainCard";
+import GeneralSkeleton from "ui-component/cards/Skeleton/GeneralSkeleton";
 
-import chartData from './chart-data/billing-balance-by-maturity-range';
+import chartData from "./chart-data/billing-balance-by-maturity-range";
 
 const BillingBalanceByMaturityRange = ({ isLoading }) => {
   const theme = useTheme();
@@ -51,7 +51,7 @@ const BillingBalanceByMaturityRange = ({ isLoading }) => {
         borderColor: grey200,
       },
       tooltip: {
-        theme: 'light',
+        theme: "light",
       },
       legend: {
         labels: {
@@ -61,7 +61,7 @@ const BillingBalanceByMaturityRange = ({ isLoading }) => {
     };
 
     if (!isLoading) {
-      ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
+      ApexCharts.exec("bar-chart", "updateOptions", newChartData);
     }
   }, [
     navType,
@@ -84,11 +84,7 @@ const BillingBalanceByMaturityRange = ({ isLoading }) => {
         <MainCard>
           <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-              <Grid
-                container
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Grid container alignItems="center" justifyContent="space-between">
                 <Grid item>
                   <Grid container direction="column" spacing={1}>
                     <Grid item>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 import {
   Box,
@@ -11,17 +11,17 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { Formik } from "formik";
+import * as Yup from "yup";
 
-import useScriptRef from 'hooks/useScriptRef';
-import AnimateButton from 'ui-component/extended/AnimateButton';
+import useScriptRef from "hooks/useScriptRef";
+import AnimateButton from "ui-component/extended/AnimateButton";
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
@@ -38,17 +38,12 @@ const FirebaseLogin = ({ ...others }) => {
 
   return (
     <>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        sx={{ mt: 2, mb: 2 }}
-      >
+      <Grid container direction="column" justifyContent="center" sx={{ mt: 2, mb: 2 }}>
         <Grid item xs={12}>
           <Box
             sx={{
-              alignItems: 'center',
-              display: 'flex',
+              alignItems: "center",
+              display: "flex",
             }}
           >
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -60,13 +55,13 @@ const FirebaseLogin = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          user: 'HAVAN',
-          password: '1234',
+          user: "HAVAN",
+          password: "1234",
           submit: null,
         }}
         validationSchema={Yup.object().shape({
-          user: Yup.string().max(255).required('O usuário é obrigatório'),
-          password: Yup.string().max(255).required('A senha é obrigatória'),
+          user: Yup.string().max(255).required("O usuário é obrigatório"),
+          password: Yup.string().max(255).required("A senha é obrigatória"),
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -84,24 +79,14 @@ const FirebaseLogin = ({ ...others }) => {
           }
         }}
       >
-        {({
-          errors,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-          touched,
-          values,
-        }) => (
+        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <FormControl
               fullWidth
               error={Boolean(touched.user && errors.user)}
               sx={{ ...theme.typography.customInput }}
             >
-              <InputLabel htmlFor="outlined-adornment-user-login">
-                Usuário
-              </InputLabel>
+              <InputLabel htmlFor="outlined-adornment-user-login">Usuário</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-user-login"
                 type="text"
@@ -113,10 +98,7 @@ const FirebaseLogin = ({ ...others }) => {
                 inputProps={{}}
               />
               {touched.user && errors.user && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-user-login"
-                >
+                <FormHelperText error id="standard-weight-helper-text-user-login">
                   {errors.user}
                 </FormHelperText>
               )}
@@ -127,12 +109,10 @@ const FirebaseLogin = ({ ...others }) => {
               error={Boolean(touched.password && errors.password)}
               sx={{ ...theme.typography.customInput }}
             >
-              <InputLabel htmlFor="outlined-adornment-password-login">
-                Senha
-              </InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password-login">Senha</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 value={values.password}
                 name="password"
                 onBlur={handleBlur}
@@ -154,10 +134,7 @@ const FirebaseLogin = ({ ...others }) => {
                 inputProps={{}}
               />
               {touched.password && errors.password && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-password-login"
-                >
+                <FormHelperText error id="standard-weight-helper-text-password-login">
                   {errors.password}
                 </FormHelperText>
               )}

@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { Grid } from '@mui/material';
+import { Grid } from "@mui/material";
 
-import { gridSpacing } from 'store/constant';
-import BillingBalanceByMaturityRange from './BillingBalanceByMaturityRange';
-import EarningCard from './EarningCard';
-import PopularCard from './PopularCard';
-import TotalIncomeDarkCard from './TotalIncomeDarkCard';
-import TotalIncomeLightCard from './TotalIncomeLightCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
-import WalletCollectionBalance from './WalletCollectionBalance';
+import { gridSpacing } from "store/constant";
+import BillingBalanceByMaturityRange from "./BillingBalanceByMaturityRange";
+import EarningCard from "./EarningCard";
+import PopularCard from "./PopularCard";
+import TotalIncomeDarkCard from "./TotalIncomeDarkCard";
+import TotalIncomeLightCard from "./TotalIncomeLightCard";
+import TotalOrderLineChartCard from "./TotalOrderLineChartCard";
+import WalletCollectionBalance from "./WalletCollectionBalance";
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);

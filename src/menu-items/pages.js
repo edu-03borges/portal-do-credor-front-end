@@ -1,27 +1,27 @@
-import { IconKey } from '@tabler/icons-react';
+import { IconKey } from "@tabler/icons-react";
 
 const icons = {
   IconKey,
 };
 
 const pages = {
-  id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
-  type: 'group',
+  id: "pages",
+  title: "Pages",
+  caption: "Pages Caption",
+  type: "group",
   children: [
     {
-      id: 'authentication',
-      title: 'Authentication',
-      type: 'collapse',
+      id: "authentication",
+      title: "Authentication",
+      type: "collapse",
       icon: icons.IconKey,
 
       children: [
         {
-          id: 'login',
-          title: 'Login',
-          type: 'item',
-          url: '/pages/login',
+          id: "login",
+          title: "Login",
+          type: "item",
+          url: "/pages/login",
           target: true,
         },
       ],

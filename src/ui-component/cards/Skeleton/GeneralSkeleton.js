@@ -1,7 +1,7 @@
-import { Card, CardContent, Grid } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import { Card, CardContent, Grid } from "@mui/material";
+import Skeleton from "@mui/material/Skeleton";
 
-import { gridSpacing } from 'store/constant';
+import { gridSpacing } from "store/constant";
 
 const GeneralSkeleton = () => (
   <Card>

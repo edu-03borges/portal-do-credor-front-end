@@ -1,13 +1,13 @@
-import { Card } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Card } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
+import MainCard from "ui-component/cards/MainCard";
 
 // styles
-const IFrameWrapper = styled('iframe')(({ theme }) => ({
-  height: 'calc(100vh - 210px)',
-  border: '1px solid',
+const IFrameWrapper = styled("iframe")(({ theme }) => ({
+  height: "calc(100vh - 210px)",
+  border: "1px solid",
   borderColor: theme.palette.primary.light,
 }));
 
@@ -15,7 +15,7 @@ const IFrameWrapper = styled('iframe')(({ theme }) => ({
 
 const MaterialIcons = () => (
   <MainCard title="Material Icons">
-    <Card sx={{ overflow: 'hidden' }}>
+    <Card sx={{ overflow: "hidden" }}>
       <IFrameWrapper
         title="Material Icon"
         width="100%"

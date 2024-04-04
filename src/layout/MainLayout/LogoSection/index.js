@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { ButtonBase } from '@mui/material';
+import { ButtonBase } from "@mui/material";
 
-import config from 'config';
-import { MENU_OPEN } from 'store/actions';
-import Logo from 'ui-component/Logo';
+import config from "config";
+import { MENU_OPEN } from "store/actions";
+import Logo from "ui-component/Logo";
 
 // ==============================|| MAIN LOGO ||============================== //
 

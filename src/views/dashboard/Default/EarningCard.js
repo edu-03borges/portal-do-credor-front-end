@@ -1,50 +1,50 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import PropTypes from "prop-types";
+import { useState } from "react";
 
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
 
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import MainCard from "ui-component/cards/MainCard";
+import SkeletonEarningCard from "ui-component/cards/Skeleton/EarningCard";
 
-import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
-import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
-import EarningIcon from 'assets/images/icons/earning.svg';
+import ArchiveTwoToneIcon from "@mui/icons-material/ArchiveOutlined";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import FileCopyTwoToneIcon from "@mui/icons-material/FileCopyOutlined";
+import GetAppTwoToneIcon from "@mui/icons-material/GetAppOutlined";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import PictureAsPdfTwoToneIcon from "@mui/icons-material/PictureAsPdfOutlined";
+import EarningIcon from "assets/images/icons/earning.svg";
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
-  color: '#fff',
-  overflow: 'hidden',
-  position: 'relative',
-  '&:after': {
+  color: "#fff",
+  overflow: "hidden",
+  position: "relative",
+  "&:after": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     width: 210,
     height: 210,
     background: theme.palette.primary[800],
-    borderRadius: '50%',
+    borderRadius: "50%",
     top: -85,
     right: -95,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       top: -105,
       right: -140,
     },
   },
-  '&:before': {
+  "&:before": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     width: 210,
     height: 210,
     background: theme.palette.primary[800],
-    borderRadius: '50%',
+    borderRadius: "50%",
     top: -125,
     right: -15,
     opacity: 0.5,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       top: -155,
       right: -70,
     },
@@ -111,12 +111,12 @@ const EarningCard = ({ isLoading }) => {
                       onClose={handleClose}
                       variant="selectedMenu"
                       anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
+                        vertical: "bottom",
+                        horizontal: "right",
                       }}
                       transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
+                        vertical: "top",
+                        horizontal: "right",
                       }}
                     >
                       <MenuItem onClick={handleClose}>
@@ -140,7 +140,7 @@ const EarningCard = ({ isLoading }) => {
                   <Grid item>
                     <Typography
                       sx={{
-                        fontSize: '2.125rem',
+                        fontSize: "2.125rem",
                         fontWeight: 500,
                         mr: 1,
                         mt: 1.75,
@@ -153,7 +153,7 @@ const EarningCard = ({ isLoading }) => {
                   <Grid item>
                     <Avatar
                       sx={{
-                        cursor: 'pointer',
+                        cursor: "pointer",
                         ...theme.typography.smallAvatar,
                         backgroundColor: theme.palette.primary[200],
                         color: theme.palette.primary.dark,
@@ -161,7 +161,7 @@ const EarningCard = ({ isLoading }) => {
                     >
                       <ArrowUpwardIcon
                         fontSize="inherit"
-                        sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
+                        sx={{ transform: "rotate3d(1, 1, 1, 45deg)" }}
                       />
                     </Avatar>
                   </Grid>
@@ -170,7 +170,7 @@ const EarningCard = ({ isLoading }) => {
               <Grid item sx={{ mb: 1.25 }}>
                 <Typography
                   sx={{
-                    fontSize: '1rem',
+                    fontSize: "1rem",
                     fontWeight: 500,
                     color: theme.palette.primary[200],
                   }}

@@ -1,30 +1,30 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 // material-ui
-import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
 
 // project imports
-import navigation from 'menu-items';
-import { SET_MENU } from 'store/actions';
-import { drawerWidth } from 'store/constant';
-import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
-import Customization from '../Customization';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import navigation from "menu-items";
+import { SET_MENU } from "store/actions";
+import { drawerWidth } from "store/constant";
+import Breadcrumbs from "ui-component/extended/Breadcrumbs";
+import Customization from "../Customization";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 // assets
-import { IconChevronRight } from '@tabler/icons-react';
+import { IconChevronRight } from "@tabler/icons-react";
 
 // styles
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" && prop !== "theme" })(
   ({ theme, open }) => ({
     ...theme.typography.mainContent,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     transition: theme.transitions.create(
-      'margin',
+      "margin",
       open
         ? {
             easing: theme.transitions.easing.easeOut,
@@ -35,27 +35,27 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && pr
             duration: theme.transitions.duration.leavingScreen,
           },
     ),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       marginLeft: open ? 0 : -(drawerWidth - 20),
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '20px',
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "20px",
       width: `calc(100% - ${drawerWidth}px)`,
-      padding: '16px',
+      padding: "16px",
     },
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '10px',
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "10px",
       width: `calc(100% - ${drawerWidth}px)`,
-      padding: '16px',
-      marginRight: '10px',
+      padding: "16px",
+      marginRight: "10px",
     },
   }),
 );
 
 const MainLayout = () => {
   const theme = useTheme();
-  const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+  const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
 
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const MainLayout = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       {/* header */}
       <AppBar
@@ -74,7 +74,7 @@ const MainLayout = () => {
         elevation={0}
         sx={{
           bgcolor: theme.palette.background.default,
-          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
+          transition: leftDrawerOpened ? theme.transitions.create("width") : "none",
         }}
       >
         <Toolbar>

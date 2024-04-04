@@ -1,44 +1,37 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import {
-  Button,
-  CardActions,
-  CardContent,
-  Divider,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Button, CardActions, CardContent, Divider, Grid, Typography } from "@mui/material";
 
-import { gridSpacing } from 'store/constant';
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
+import { gridSpacing } from "store/constant";
+import MainCard from "ui-component/cards/MainCard";
+import SkeletonPopularCard from "ui-component/cards/Skeleton/PopularCard";
 
-import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
+import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 
 const histAcoesRealizadas = [
   {
-    date: '20/03/2024',
-    description: 'Foi cadastrado 1 novo devedor nesta data.',
+    date: "20/03/2024",
+    description: "Foi cadastrado 1 novo devedor nesta data.",
   },
   {
-    date: '20/03/2024',
-    description: 'Foram cadastrados 3 novos títulos nesta data.',
+    date: "20/03/2024",
+    description: "Foram cadastrados 3 novos títulos nesta data.",
   },
   {
-    date: '18/03/2024',
-    description: 'Foi cadastrado 1 novo título nesta data.',
+    date: "18/03/2024",
+    description: "Foi cadastrado 1 novo título nesta data.",
   },
   {
-    date: '18/03/2024',
-    description: 'Foi cadastrado 1 novo devedor nesta data.',
+    date: "18/03/2024",
+    description: "Foi cadastrado 1 novo devedor nesta data.",
   },
   {
-    date: '13/03/2024',
-    description: 'Foram cadastrados 2 novos devedores nesta data.',
+    date: "13/03/2024",
+    description: "Foram cadastrados 2 novos devedores nesta data.",
   },
   {
-    date: '13/03/2024',
-    description: 'Foram cadastrados 6 novos títulos nesta data.',
+    date: "13/03/2024",
+    description: "Foram cadastrados 6 novos títulos nesta data.",
   },
 ];
 
@@ -52,15 +45,9 @@ const PopularCard = ({ isLoading }) => {
           <CardContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
-                <Grid
-                  container
-                  alignContent="center"
-                  justifyContent="space-between"
-                >
+                <Grid container alignContent="center" justifyContent="space-between">
                   <Grid item>
-                    <Typography variant="h4">
-                      Histórico de Ações Realizadas
-                    </Typography>
+                    <Typography variant="h4">Histórico de Ações Realizadas</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -69,22 +56,14 @@ const PopularCard = ({ isLoading }) => {
                   <>
                     <Grid container direction="column">
                       <Grid item>
-                        <Grid
-                          container
-                          alignItems="center"
-                          justifyContent="space-between"
-                        >
+                        <Grid container alignItems="center" justifyContent="space-between">
                           <Grid item>
                             <Typography variant="subtitle1" color="inherit">
                               {value.date}
                             </Typography>
                           </Grid>
                           <Grid item>
-                            <Grid
-                              container
-                              alignItems="center"
-                              justifyContent="space-between"
-                            />
+                            <Grid container alignItems="center" justifyContent="space-between" />
                           </Grid>
                         </Grid>
                       </Grid>
@@ -100,7 +79,7 @@ const PopularCard = ({ isLoading }) => {
               </Grid>
             </Grid>
           </CardContent>
-          <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center' }}>
+          <CardActions sx={{ p: 1.25, pt: 0, justifyContent: "center" }}>
             <Button size="small" disableElevation>
               Ver Todos
               <ChevronRightOutlinedIcon />

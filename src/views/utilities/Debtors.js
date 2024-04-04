@@ -12,16 +12,16 @@ import {
   TableHead,
   TableRow,
   TextField,
-} from '@mui/material';
-import { useEffect, useState } from 'react';
+} from "@mui/material";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [devedores, setDevedores] = useState([]);
   const [filtro, setFiltro] = useState({
-    localizarPor: 'Processo',
-    situacaoProcesso: 'Somente Ativos',
-    carteiraCredor: '',
-    credor: '',
+    localizarPor: "Processo",
+    situacaoProcesso: "Somente Ativos",
+    carteiraCredor: "",
+    credor: "",
   });
   const [pagina, setPagina] = useState(1);
   const [registrosPorPagina, setRegistrosPorPagina] = useState(10);
@@ -30,14 +30,14 @@ const App = () => {
     // TODO: Implementar a lógica para buscar os devedores da API
     const devedoresExemplo = [
       {
-        processo: '123456789',
-        carteiraCredor: 'Carteira X',
-        nomeRazaoSocial: 'Nome do devedor',
-        cnpjCpf: '123.456.789-00',
-        cidade: 'Cidade',
-        uf: 'UF',
+        processo: "123456789",
+        carteiraCredor: "Carteira X",
+        nomeRazaoSocial: "Nome do devedor",
+        cnpjCpf: "123.456.789-00",
+        cidade: "Cidade",
+        uf: "UF",
         valor: 1000.0,
-        statusProcesso: 'Ativo',
+        statusProcesso: "Ativo",
       },
       // ...
     ];
@@ -68,7 +68,7 @@ const App = () => {
             onChange={handleFiltroChange}
             select
             SelectProps={{
-              variant: 'outlined',
+              variant: "outlined",
             }}
             InputAdornment={
               <InputAdornment position="end">
@@ -96,7 +96,7 @@ const App = () => {
             onChange={handleFiltroChange}
             select
             SelectProps={{
-              variant: 'outlined',
+              variant: "outlined",
             }}
             sx={{ ml: 2 }}
           >
@@ -156,7 +156,7 @@ const App = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <Pagination
             count={10} // Adicione o número total de páginas aqui
             page={pagina}

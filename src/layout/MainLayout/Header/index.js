@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // material-ui
-import { Avatar, Box, ButtonBase } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Avatar, Box, ButtonBase } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // project imports
-import LogoSection from '../LogoSection';
-import NotificationSection from './NotificationSection';
-import ProfileSection from './ProfileSection';
-import SearchSection from './SearchSection';
+import LogoSection from "../LogoSection";
+import NotificationSection from "./NotificationSection";
+import ProfileSection from "./ProfileSection";
+import SearchSection from "./SearchSection";
 
 // assets
-import { IconMenu2 } from '@tabler/icons-react';
+import { IconMenu2 } from "@tabler/icons-react";
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -24,25 +24,25 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <Box
         sx={{
           width: 228,
-          display: 'flex',
-          [theme.breakpoints.down('md')]: {
-            width: 'auto',
+          display: "flex",
+          [theme.breakpoints.down("md")]: {
+            width: "auto",
           },
         }}
       >
-        <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
+        <Box component="span" sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}>
           <LogoSection />
         </Box>
-        <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+        <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
           <Avatar
             variant="rounded"
             sx={{
               ...theme.typography.commonAvatar,
               ...theme.typography.mediumAvatar,
-              transition: 'all .2s ease-in-out',
+              transition: "all .2s ease-in-out",
               background: theme.palette.secondary.light,
               color: theme.palette.secondary.dark,
-              '&:hover': {
+              "&:hover": {
                 background: theme.palette.secondary.dark,
                 color: theme.palette.secondary.light,
               },

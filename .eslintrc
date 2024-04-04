@@ -1,17 +1,16 @@
 {
   "env": {
     "browser": true, // Define que o ambiente de execução é o navegador
-    "es2021": true, // Habilita as funcionalidades do ECMAScript 2021
+    "es2024": true, // Habilita as funcionalidades do ECMAScript 2024
     "jest": true // Habilita as variáveis globais do Jest para testes unitários
   },
   "extends": [
     "plugin:react/recommended", // Usa as configurações recomendadas para o React
     "plugin:react-hooks/recommended", // Usa as configurações recomendadas para os hooks do React
     "standard", // Usa as configurações padrão do StandardJS
-    "plugin:prettier/recommended", // Integra o Prettier ao ESLint para formatação automática de código
-    "plugin:@typescript-eslint/recommended" // Extensão recomendada do ESLint para projetos TypeScript
+    "plugin:prettier/recommended" // Integra o Prettier ao ESLint para formatação automática de código
   ],
-  "parser": "@typescript-eslint/parser", // Indica ao ESLint qual parser ele deve usar para analisar o código TypeScript
+  "parser": "@babel/eslint-parser", // Indica ao ESLint qual parser ele deve usar para analisar o código JavaScript
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true // Habilita o suporte para JSX
@@ -21,8 +20,7 @@
   },
   "plugins": [
     "react", // Adiciona suporte para o ESLint entender código React
-    "jsx-a11y", // Adiciona regras de acessibilidade JSX
-    "@typescript-eslint" // Indica ao ESLint que ele deve carregar e usar o plugin @typescript-eslint
+    "jsx-a11y" // Adiciona regras de acessibilidade JSX
   ],
   "rules": {
     "react/self-closing-comp": "error", // Requer componentes React sem tags de fechamento quando não têm filhos
@@ -39,7 +37,7 @@
       {
         "printWidth": 100, // Largura máxima da linha
         "tabWidth": 2, // Tamanho da tabulação
-        "singleQuote": true, // Usa aspas simples em vez de duplas
+        "singleQuote": false, // Usa aspas duplas em vez de simples
         "trailingComma": "all", // Adiciona vírgula final em arrays e objetos literais
         "arrowParens": "always", // Adiciona parênteses em torno dos argumentos de função de seta
         "semi": true, // Exige ponto e vírgula no final das linhas
@@ -53,14 +51,12 @@
         "img": ["Image"] // Avisa quando a propriedade alt estiver ausente ou vazia
       }
     ],
+    "quotes": ["error", "double"], // Define o uso de aspas duplas
     "semi": ["error", "always"] // Exige o uso de ponto e vírgula em todas as declarações
   },
   "settings": {
     "react": {
       "version": "detect" // Detecta automaticamente a versão do React para oferecer sugestões de linting apropriadas
-    },
-    "import/parsers": { // Define os parsers a serem usados para analisar importações
-      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"] // Define o parser para arquivos TypeScript e suas extensões
     }
   },
   "ignorePatterns": ["node_modules"] // Ignora a análise de arquivos na pasta node_modules

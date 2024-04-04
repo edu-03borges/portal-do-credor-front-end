@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Drawer,
@@ -13,16 +13,16 @@ import {
   Slider,
   Tooltip,
   Typography,
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { IconSettings } from '@tabler/icons-react';
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { IconSettings } from "@tabler/icons-react";
 
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
-import { gridSpacing } from 'store/constant';
-import SubCard from 'ui-component/cards/SubCard';
-import AnimateButton from 'ui-component/extended/AnimateButton';
+import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from "store/actions";
+import { gridSpacing } from "store/constant";
+import SubCard from "ui-component/cards/SubCard";
+import AnimateButton from "ui-component/extended/AnimateButton";
 
 function valueText(value) {
   return `${value}px`;
@@ -49,15 +49,15 @@ const Customization = () => {
 
   let initialFont;
   switch (customization.fontFamily) {
-    case `'Inter', sans-serif`:
-      initialFont = 'Inter';
+    case "'Inter', sans-serif":
+      initialFont = "Inter";
       break;
-    case `'Poppins', sans-serif`:
-      initialFont = 'Poppins';
+    case "'Poppins', sans-serif":
+      initialFont = "Poppins";
       break;
-    case `'Roboto', sans-serif`:
+    case "'Roboto', sans-serif":
     default:
-      initialFont = 'Roboto';
+      initialFont = "Roboto";
       break;
   }
 
@@ -66,15 +66,15 @@ const Customization = () => {
   useEffect(() => {
     let newFont;
     switch (fontFamily) {
-      case 'Inter':
-        newFont = `'Inter', sans-serif`;
+      case "Inter":
+        newFont = "'Inter', sans-serif";
         break;
-      case 'Poppins':
-        newFont = `'Poppins', sans-serif`;
+      case "Poppins":
+        newFont = "'Poppins', sans-serif";
         break;
-      case 'Roboto':
+      case "Roboto":
       default:
-        newFont = `'Roboto', sans-serif`;
+        newFont = "'Roboto', sans-serif";
         break;
     }
     dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
@@ -92,12 +92,12 @@ const Customization = () => {
           color="secondary"
           sx={{
             borderRadius: 0,
-            borderTopLeftRadius: '50%',
-            borderBottomLeftRadius: '50%',
-            borderTopRightRadius: '50%',
-            borderBottomRightRadius: '4px',
-            top: '25%',
-            position: 'fixed',
+            borderTopLeftRadius: "50%",
+            borderBottomLeftRadius: "50%",
+            borderTopRightRadius: "50%",
+            borderBottomRightRadius: "4px",
+            top: "25%",
+            position: "fixed",
             right: 10,
             zIndex: theme.zIndex.speedDial,
           }}
@@ -137,8 +137,8 @@ const Customization = () => {
                       control={<Radio />}
                       label="Roboto"
                       sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': {
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": {
                           color: theme.palette.grey[900],
                         },
                       }}
@@ -148,8 +148,8 @@ const Customization = () => {
                       control={<Radio />}
                       label="Poppins"
                       sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': {
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": {
                           color: theme.palette.grey[900],
                         },
                       }}
@@ -159,8 +159,8 @@ const Customization = () => {
                       control={<Radio />}
                       label="Inter"
                       sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': {
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": {
                           color: theme.palette.grey[900],
                         },
                       }}
@@ -172,14 +172,7 @@ const Customization = () => {
             <Grid item xs={12}>
               {/* border radius */}
               <SubCard title="Border Radius">
-                <Grid
-                  item
-                  xs={12}
-                  container
-                  spacing={2}
-                  alignItems="center"
-                  sx={{ mt: 2.5 }}
-                >
+                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
                   <Grid item>
                     <Typography variant="h6" color="secondary">
                       4px
@@ -199,8 +192,8 @@ const Customization = () => {
                       max={24}
                       color="secondary"
                       sx={{
-                        '& .MuiSlider-valueLabel': {
-                          color: 'secondary.light',
+                        "& .MuiSlider-valueLabel": {
+                          color: "secondary.light",
                         },
                       }}
                     />

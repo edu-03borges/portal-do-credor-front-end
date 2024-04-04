@@ -1,10 +1,5 @@
 // assets
-import {
-  IconPalette,
-  IconShadow,
-  IconTypography,
-  IconWindmill,
-} from '@tabler/icons-react';
+import { IconPalette, IconShadow, IconTypography, IconWindmill } from "@tabler/icons-react";
 
 // constant
 const icons = {
@@ -17,30 +12,30 @@ const icons = {
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
-  id: 'utilities',
-  title: 'Utilities',
-  type: 'group',
+  id: "utilities",
+  title: "Utilities",
+  type: "group",
   children: [
     {
-      id: 'icons',
-      title: 'Icons',
-      type: 'collapse',
+      id: "icons",
+      title: "Icons",
+      type: "collapse",
       icon: icons.IconWindmill,
       children: [
         {
-          id: 'tabler-icons',
-          title: 'Tabler Icons',
-          type: 'item',
-          url: '/icons/tabler-icons',
+          id: "tabler-icons",
+          title: "Tabler Icons",
+          type: "item",
+          url: "/icons/tabler-icons",
           breadcrumbs: false,
         },
         {
-          id: 'material-icons',
-          title: 'Material Icons',
-          type: 'item',
+          id: "material-icons",
+          title: "Material Icons",
+          type: "item",
           external: true,
-          target: '_blank',
-          url: 'https://mui.com/material-ui/material-icons/',
+          target: "_blank",
+          url: "https://mui.com/material-ui/material-icons/",
           breadcrumbs: false,
         },
       ],

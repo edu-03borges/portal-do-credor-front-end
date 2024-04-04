@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import logo from 'assets/images/logo_cubo_sistemas.png';
-import logo_nome from 'assets/images/logo_nome_cubo_sistemas.png';
+import logo from "assets/images/logo_cubo_sistemas.png";
+import logo_nome from "assets/images/logo_nome_cubo_sistemas.png";
 
 const Logo = () => {
   return (

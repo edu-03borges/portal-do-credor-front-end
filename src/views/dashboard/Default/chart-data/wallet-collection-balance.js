@@ -2,10 +2,10 @@
 
 const chartData = {
   height: 480,
-  type: 'bar',
+  type: "bar",
   options: {
     chart: {
-      id: 'bar-chart',
+      id: "bar-chart",
       stacked: true,
       toolbar: {
         show: false,
@@ -19,7 +19,7 @@ const chartData = {
         breakpoint: 480,
         options: {
           legend: {
-            position: 'bottom',
+            position: "bottom",
             offsetX: -10,
             offsetY: 0,
           },
@@ -29,23 +29,18 @@ const chartData = {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '50%',
+        columnWidth: "50%",
       },
     },
     xaxis: {
-      type: 'category',
-      categories: [
-        'JBS_TUBARÃO',
-        'JBS_JOINVILLE',
-        'JBS_ITAJAÍ',
-        'JBS_CURITIBA',
-      ],
+      type: "category",
+      categories: ["JBS_TUBARÃO", "JBS_JOINVILLE", "JBS_ITAJAÍ", "JBS_CURITIBA"],
     },
     legend: {
       show: true,
-      fontSize: '14px',
-      fontFamily: `'Roboto', sans-serif`,
-      position: 'bottom',
+      fontSize: "14px",
+      fontFamily: "'Roboto', sans-serif",
+      position: "bottom",
       offsetX: 20,
       labels: {
         useSeriesColors: false,
@@ -61,7 +56,7 @@ const chartData = {
       },
     },
     fill: {
-      type: 'solid',
+      type: "solid",
     },
     dataLabels: {
       enabled: false,
@@ -72,15 +67,15 @@ const chartData = {
   },
   series: [
     {
-      name: 'Investment',
+      name: "Investment",
       data: [9000, 6000, 3000, 30000],
     },
     {
-      name: 'Loss',
+      name: "Loss",
       data: [400, 4000, 500, 15000],
     },
     {
-      name: 'Profit',
+      name: "Profit",
       data: [400, 0, 35, 700],
     },
   ],

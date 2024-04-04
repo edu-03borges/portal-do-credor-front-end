@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // material-ui
 import {
@@ -9,39 +9,39 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
-} from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+} from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
+import MainCard from "ui-component/cards/MainCard";
+import TotalIncomeCard from "ui-component/cards/Skeleton/TotalIncomeCard";
 
 // assets
-import GroupTwoToneIcon from '@mui/icons-material/GroupTwoTone';
+import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
   color: theme.palette.primary.light,
-  overflow: 'hidden',
-  position: 'relative',
-  '&:after': {
+  overflow: "hidden",
+  position: "relative",
+  "&:after": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     width: 210,
     height: 210,
     background: `linear-gradient(210.04deg, ${theme.palette.primary[200]} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
-    borderRadius: '50%',
+    borderRadius: "50%",
     top: -30,
     right: -180,
   },
-  '&:before': {
+  "&:before": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     width: 210,
     height: 210,
     background: `linear-gradient(140.9deg, ${theme.palette.primary[200]} -14.02%, rgba(144, 202, 249, 0) 77.58%)`,
-    borderRadius: '50%',
+    borderRadius: "50%",
     top: -160,
     right: -130,
   },
@@ -68,7 +68,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                       ...theme.typography.commonAvatar,
                       ...theme.typography.largeAvatar,
                       backgroundColor: theme.palette.primary[800],
-                      color: '#fff',
+                      color: "#fff",
                     }}
                   >
                     <GroupTwoToneIcon fontSize="inherit" />
@@ -84,10 +84,10 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                     <Typography
                       variant="h4"
                       sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontWeight: 'normal',
-                        color: '#fff',
+                        display: "flex",
+                        alignItems: "center",
+                        fontWeight: "normal",
+                        color: "#fff",
                       }}
                     >
                       <svg
@@ -111,10 +111,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                     </Typography>
                   }
                   secondary={
-                    <Typography
-                      variant="subtitle2"
-                      sx={{ color: 'primary.light', mt: 0.25 }}
-                    >
+                    <Typography variant="subtitle2" sx={{ color: "primary.light", mt: 0.25 }}>
                       Quantidade de Devedores Ativos
                     </Typography>
                   }
