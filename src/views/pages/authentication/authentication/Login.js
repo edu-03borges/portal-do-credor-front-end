@@ -10,7 +10,7 @@ import AuthWrapper1 from "../AuthWrapper1";
 import AuthLogin from "../auth-forms/AuthLogin";
 
 import logo from "assets/images/logo_cubo_sistemas.png";
-import logo_nome from "assets/images/logo_nome_cubo_sistemas.png";
+import logoNome from "assets/images/logo_nome_cubo_sistemas.png";
 
 const Login = () => {
   const theme = useTheme();
@@ -40,7 +40,7 @@ const Login = () => {
                       <img src={logo} alt="Logo" width="40" />
                     </Link>
                     <Link to="#">
-                      <img src={logo_nome} alt="Logo com Nome" width="100" />
+                      <img src={logoNome} alt="Logo com Nome" width="100" />
                     </Link>
                   </Box>
                   <Grid item xs={12} sx={{ mt: 2 }}>
