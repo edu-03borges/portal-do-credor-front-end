@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-// material-ui
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 
-// project imports
 import navigation from "menu-items";
 import { SET_MENU } from "store/actions";
 import { drawerWidth } from "store/constant";
@@ -14,10 +12,8 @@ import Customization from "../Customization";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-// assets
 import { IconChevronRight } from "@tabler/icons-react";
 
-// styles
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" && prop !== "theme" })(
   ({ theme, open }) => ({
     ...theme.typography.mainContent,

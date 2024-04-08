@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-// material-ui
 import { useTheme, styled } from "@mui/material/styles";
 import {
   Avatar,
@@ -14,17 +13,13 @@ import {
   Popper,
 } from "@mui/material";
 
-// third-party
 import PopupState, { bindPopper, bindToggle } from "material-ui-popup-state";
 
-// project imports
 import Transitions from "ui-component/extended/Transitions";
 
-// assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from "@tabler/icons-react";
 import { shouldForwardProp } from "@mui/system";
 
-// styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
   zIndex: 1100,
   width: "99%",
@@ -64,8 +59,6 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(({ theme }) => (
     color: theme.palette.secondary.light,
   },
 }));
-
-// ==============================|| SEARCH INPUT - MOBILE||============================== //
 
 const MobileSearch = ({ value, setValue, popupState }) => {
   const theme = useTheme();
@@ -121,8 +114,6 @@ MobileSearch.propTypes = {
   setValue: PropTypes.func,
   popupState: PopupState,
 };
-
-// ==============================|| SEARCH INPUT ||============================== //
 
 const SearchSection = () => {
   const theme = useTheme();
@@ -183,7 +174,7 @@ const SearchSection = () => {
           id="input-search-header"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Search"
+          placeholder="Localizar Processo"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
@@ -191,11 +182,13 @@ const SearchSection = () => {
           }
           endAdornment={
             <InputAdornment position="end">
-              <ButtonBase sx={{ borderRadius: "12px" }}>
-                <HeaderAvatarStyle variant="rounded">
-                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-                </HeaderAvatarStyle>
-              </ButtonBase>
+              <div style={{ pointerEvents: 'none' }}>
+                <ButtonBase sx={{ borderRadius: "12px" }}>
+                  <HeaderAvatarStyle variant="rounded">
+                    <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                  </HeaderAvatarStyle>
+                </ButtonBase>
+              </div>
             </InputAdornment>
           }
           aria-describedby="search-helper-text"

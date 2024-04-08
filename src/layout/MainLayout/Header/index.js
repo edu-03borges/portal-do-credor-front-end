@@ -1,19 +1,13 @@
 import PropTypes from "prop-types";
 
-// material-ui
 import { Avatar, Box, ButtonBase } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-// project imports
 import LogoSection from "../LogoSection";
-import NotificationSection from "./NotificationSection";
 import ProfileSection from "./ProfileSection";
 import SearchSection from "./SearchSection";
 
-// assets
 import { IconMenu2 } from "@tabler/icons-react";
-
-// ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
@@ -54,14 +48,11 @@ const Header = ({ handleLeftDrawerToggle }) => {
           </Avatar>
         </ButtonBase>
       </Box>
-
-      {/* header search */}
+      
       <SearchSection />
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
 
-      {/* notification & profile */}
-      <NotificationSection />
       <ProfileSection />
     </>
   );

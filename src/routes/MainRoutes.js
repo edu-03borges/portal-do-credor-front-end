@@ -5,10 +5,10 @@ import Loadable from "ui-component/Loadable";
 
 const DashboardDefault = Loadable(lazy(() => import("views/dashboard/Default")));
 
-const UtilsMaterialIcons = Loadable(lazy(() => import("views/utilities/MaterialIcons")));
-const UtilsTablerIcons = Loadable(lazy(() => import("views/utilities/TablerIcons")));
 const Debtors = Loadable(lazy(() => import("views/debtors")));
 const Histories = Loadable(lazy(() => import("views/histories")));
+const Titles = Loadable(lazy(() => import("views/titles")));
+const DocumentQuery = Loadable(lazy(() => import("views/documentQuery")));
 
 const MainRoutes = {
   path: "/",
@@ -46,20 +46,20 @@ const MainRoutes = {
       ],
     },
     {
-      path: "icons",
+      path: "menu",
       children: [
         {
-          path: "tabler-icons",
-          element: <UtilsTablerIcons />,
+          path: "/menu/titles",
+          element: <Titles />,
         },
       ],
     },
     {
-      path: "icons",
+      path: "menu",
       children: [
         {
-          path: "material-icons",
-          element: <UtilsMaterialIcons />,
+          path: "/menu/document_query",
+          element: <DocumentQuery />,
         },
       ],
     },

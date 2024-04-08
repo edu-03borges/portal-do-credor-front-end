@@ -1,63 +1,63 @@
-{
-  "env": {
-    "browser": true, // Define que o ambiente de execução é o navegador
-    "es2024": true, // Habilita as funcionalidades do ECMAScript 2024
-    "jest": true // Habilita as variáveis globais do Jest para testes unitários
-  },
-  "extends": [
-    "plugin:react/recommended", // Usa as configurações recomendadas para o React
-    "plugin:react-hooks/recommended", // Usa as configurações recomendadas para os hooks do React
-    "standard", // Usa as configurações padrão do StandardJS
-    "plugin:prettier/recommended" // Integra o Prettier ao ESLint para formatação automática de código
-  ],
-  "parser": "@babel/eslint-parser", // Indica ao ESLint qual parser ele deve usar para analisar o código JavaScript
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true // Habilita o suporte para JSX
-    },
-    "ecmaVersion": "latest" // Define a versão mais recente do ECMAScript
-    // "sourceType": "module" // Indica que o código é ECMAScript de módulo
-  },
-  "plugins": [
-    "react", // Adiciona suporte para o ESLint entender código React
-    "jsx-a11y" // Adiciona regras de acessibilidade JSX
-  ],
-  "rules": {
-    "react/self-closing-comp": "error", // Requer componentes React sem tags de fechamento quando não têm filhos
-    "react/react-in-jsx-scope": "off", // Permite o uso de JSX sem importar React explicitamente
-    "react/prop-types": "off", // Desativa a verificação de prop-types para componentes React
-    "jsx-a11y/aria-props": "warn", // Avisa sobre propriedades ARIA inválidas
-    "jsx-a11y/aria-proptypes": "warn", // Avisa sobre tipos de propriedades ARIA inválidos
-    "jsx-a11y/aria-unsupported-elements": "warn", // Avisa sobre elementos não suportados por ARIA
-    "jsx-a11y/role-has-required-aria-props": "warn", // Avisa sobre elementos que precisam de propriedades ARIA obrigatórias
-    "jsx-a11y/role-supports-aria-props": "warn", // Avisa sobre elementos com papéis que não suportam propriedades ARIA
-    "react/no-unknown-property": "error", // Avisa sobre propriedades desconhecidas em elementos React
-    "prettier/prettier": [ // Configurações do Prettier integradas ao ESLint
-      "error",
-      {
-        "printWidth": 100, // Largura máxima da linha
-        "tabWidth": 2, // Tamanho da tabulação
-        "singleQuote": false, // Usa aspas duplas em vez de simples
-        "trailingComma": "all", // Adiciona vírgula final em arrays e objetos literais
-        "arrowParens": "always", // Adiciona parênteses em torno dos argumentos de função de seta
-        "semi": true, // Exige ponto e vírgula no final das linhas
-        "endOfLine": "auto" // Usa a quebra de linha do sistema operacional
-      }
-    ],
-    "jsx-a11y/alt-text": [ // Avisa sobre imagens sem texto alternativo
-      "warn",
-      {
-        "elements": ["img"], // Verifica apenas elementos <img>
-        "img": ["Image"] // Avisa quando a propriedade alt estiver ausente ou vazia
-      }
-    ],
-    "quotes": ["error", "double"], // Define o uso de aspas duplas
-    "semi": ["error", "always"] // Exige o uso de ponto e vírgula em todas as declarações
-  },
-  "settings": {
-    "react": {
-      "version": "detect" // Detecta automaticamente a versão do React para oferecer sugestões de linting apropriadas
-    }
-  },
-  "ignorePatterns": ["node_modules"] // Ignora a análise de arquivos na pasta node_modules
-}
+// {
+//   "env": {
+//     "browser": true, // Define que o ambiente de execução é o navegador
+//     "es2024": true, // Habilita as funcionalidades do ECMAScript 2024
+//     "jest": true // Habilita as variáveis globais do Jest para testes unitários
+//   },
+//   "extends": [
+//     "plugin:react/recommended", // Usa as configurações recomendadas para o React
+//     "plugin:react-hooks/recommended", // Usa as configurações recomendadas para os hooks do React
+//     "standard", // Usa as configurações padrão do StandardJS
+//     "plugin:prettier/recommended" // Integra o Prettier ao ESLint para formatação automática de código
+//   ],
+//   "parser": "@babel/eslint-parser", // Indica ao ESLint qual parser ele deve usar para analisar o código JavaScript
+//   "parserOptions": {
+//     "ecmaFeatures": {
+//       "jsx": true // Habilita o suporte para JSX
+//     },
+//     "ecmaVersion": "latest" // Define a versão mais recente do ECMAScript
+//     // "sourceType": "module" // Indica que o código é ECMAScript de módulo
+//   },
+//   "plugins": [
+//     "react", // Adiciona suporte para o ESLint entender código React
+//     "jsx-a11y" // Adiciona regras de acessibilidade JSX
+//   ],
+//   "rules": {
+//     "react/self-closing-comp": "error", // Requer componentes React sem tags de fechamento quando não têm filhos
+//     "react/react-in-jsx-scope": "off", // Permite o uso de JSX sem importar React explicitamente
+//     "react/prop-types": "off", // Desativa a verificação de prop-types para componentes React
+//     "jsx-a11y/aria-props": "warn", // Avisa sobre propriedades ARIA inválidas
+//     "jsx-a11y/aria-proptypes": "warn", // Avisa sobre tipos de propriedades ARIA inválidos
+//     "jsx-a11y/aria-unsupported-elements": "warn", // Avisa sobre elementos não suportados por ARIA
+//     "jsx-a11y/role-has-required-aria-props": "warn", // Avisa sobre elementos que precisam de propriedades ARIA obrigatórias
+//     "jsx-a11y/role-supports-aria-props": "warn", // Avisa sobre elementos com papéis que não suportam propriedades ARIA
+//     "react/no-unknown-property": "error", // Avisa sobre propriedades desconhecidas em elementos React
+//     "prettier/prettier": [ // Configurações do Prettier integradas ao ESLint
+//       "error",
+//       {
+//         "printWidth": 100, // Largura máxima da linha
+//         "tabWidth": 2, // Tamanho da tabulação
+//         "singleQuote": false, // Usa aspas duplas em vez de simples
+//         "trailingComma": "all", // Adiciona vírgula final em arrays e objetos literais
+//         "arrowParens": "always", // Adiciona parênteses em torno dos argumentos de função de seta
+//         "semi": true, // Exige ponto e vírgula no final das linhas
+//         "endOfLine": "auto" // Usa a quebra de linha do sistema operacional
+//       }
+//     ],
+//     "jsx-a11y/alt-text": [ // Avisa sobre imagens sem texto alternativo
+//       "warn",
+//       {
+//         "elements": ["img"], // Verifica apenas elementos <img>
+//         "img": ["Image"] // Avisa quando a propriedade alt estiver ausente ou vazia
+//       }
+//     ],
+//     "quotes": ["error", "double"], // Define o uso de aspas duplas
+//     "semi": ["error", "always"] // Exige o uso de ponto e vírgula em todas as declarações
+//   },
+//   "settings": {
+//     "react": {
+//       "version": "detect" // Detecta automaticamente a versão do React para oferecer sugestões de linting apropriadas
+//     }
+//   },
+//   "ignorePatterns": ["node_modules"] // Ignora a análise de arquivos na pasta node_modules
+// }
