@@ -147,7 +147,7 @@ const EarningCard = ({ isLoading }) => {
                         mb: 0.75,
                       }}
                     >
-                      R$ 56.452,13
+                      R$ 56.452,14
                     </Typography>
                   </Grid>
                   <Grid item>

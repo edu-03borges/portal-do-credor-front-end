@@ -37,7 +37,19 @@ export const StyledMenuItemBlue = styled(MenuItem)(({ theme }) => ({
     marginRight: theme.spacing(0.8),
     borderRadius: theme.spacing(0.5),
     '&:hover': {
-      color: '#eceff3',
-      backgroundColor: '#496dab',
+      color: blue[800],
+      backgroundColor: blue[100],
     },
+}));
+
+export const StyledMenuItemGreen = styled(MenuItem)(({ theme }) => ({
+  fontSize: 13,
+  margin: theme.spacing(0.2),
+  marginLeft: theme.spacing(0.8),
+  marginRight: theme.spacing(0.8),
+  borderRadius: theme.spacing(0.5),
+  '&:hover': {
+    color: green[800],
+    backgroundColor: green[100],
+  },
 }));

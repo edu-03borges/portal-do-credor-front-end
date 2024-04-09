@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -86,7 +87,7 @@ const App = () => {
         <GeneralSkeleton />
       ) : (
         <>
-          <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'space-between', marginLeft: '-10px', marginBottom: '10px' }}>
+          <Container maxWidth="xxl" sx={{ display: 'flex', justifyContent: 'space-between', marginLeft: '-10px', marginBottom: '10px' }}>
             <Typography variant="h2" color="secondary">
               Lista de Devedores
             </Typography>
@@ -97,8 +98,12 @@ const App = () => {
 
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
               <StyledMenuItemBlue>
+                <AddIcon sx={{ marginRight: '5px' }} />
+                Cadastrar
+              </StyledMenuItemBlue>
+              <StyledMenuItemBlue>
                 <DescriptionOutlinedIcon sx={{ marginRight: '5px' }} />
-                Exportar XLS
+                Exportar Excel
               </StyledMenuItemBlue>
             </Menu>
           </Container>

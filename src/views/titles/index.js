@@ -166,7 +166,7 @@ const Titles = () => {
         <GeneralSkeleton />
       ) : (
         <>
-          <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'space-between', marginLeft: '-10px', marginBottom: '10px' }}>
+          <Container maxWidth="xxl" sx={{ display: 'flex', justifyContent: 'space-between', marginLeft: '-10px', marginBottom: '10px' }}>
             <Typography variant="h2" color="secondary">
               Lista de Títulos
             </Typography>
@@ -178,7 +178,7 @@ const Titles = () => {
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
               <StyledMenuItemBlue>
                 <DescriptionOutlinedIcon sx={{ marginRight: '5px' }} />
-                Exportar XLS
+                Exportar Excel
               </StyledMenuItemBlue>
             </Menu>
           </Container>

@@ -6,14 +6,8 @@ import Loadable from "ui-component/Loadable";
 const AuthLogin = Loadable(lazy(() => import("views/pages/authentication/authentication/Login")));
 
 const AuthenticationRoutes = {
-  path: "/",
-  element: <MinimalLayout />,
-  children: [
-    {
-      path: "/pages/login",
-      element: <AuthLogin />,
-    },
-  ],
+  path: "/login",
+  element: <AuthLogin />,
 };
 
 export default AuthenticationRoutes;

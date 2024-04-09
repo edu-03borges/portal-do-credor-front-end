@@ -23,6 +23,8 @@ import Transitions from "ui-component/extended/Transitions";
 
 import { IconLogout, IconSettings } from "@tabler/icons-react";
 
+import { format, subHours } from 'date-fns';
+
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
@@ -63,6 +65,25 @@ const ProfileSection = () => {
 
     prevOpen.current = open;
   }, [open]);
+
+  function message() {
+    const now = new Date();
+    const newHour = subHours(now, 3);
+
+    const hour = format(newHour, 'HH');
+
+    let message;
+
+    if (hour >= 6 && hour < 12) {
+      message = 'Bom dia,';
+    } else if (hour >= 12 && hour < 18) {
+      message = 'Boa tarde,';
+    } else {
+      message = 'Boa noite,';
+    }
+
+    return message;
+  }
 
   return (
     <>
@@ -126,7 +147,7 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Bom dia,</Typography>
+                        <Typography variant="h4">{message()}</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
                           Cubo Sistemas
                         </Typography>
