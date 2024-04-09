@@ -1,13 +1,20 @@
-import ClearIcon from '@mui/icons-material/Clear';
-import SearchIcon from '@mui/icons-material/Search';
-import { Button, Container, Grid, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
+
+import ClearIcon from '@mui/icons-material/Clear';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 import { heightButton } from 'store/constant';
+
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 import CustomDateRangePicker from 'ui-component/CustomDateRangePicker';
 import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
+import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
 
 // Temporary data *****************************************************************************************
 
@@ -38,8 +45,17 @@ const Histories = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [selectedDateRange, setSelectedDateRange] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [selectedDateRange, setSelectedDateRange] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,10 +82,21 @@ const Histories = () => {
         <GeneralSkeleton />
       ) : (
         <>
-          <Container maxWidth="xl" sx={{ marginLeft: '-10px', marginBottom: '10px' }}>
+          <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'space-between', marginLeft: '-10px', marginBottom: '10px' }}>
             <Typography variant="h2" color="secondary">
               Lista de Ocorrências
             </Typography>
+
+            <IconButton aria-label="menu de opções" onClick={handleMenuOpen}>
+              <MoreVertIcon />
+            </IconButton>
+
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+              <StyledMenuItemBlue>
+                <DescriptionOutlinedIcon sx={{ marginRight: '5px' }} />
+                Exportar XLS
+              </StyledMenuItemBlue>
+            </Menu>
           </Container>
           <MainCard>
             <Grid container>
