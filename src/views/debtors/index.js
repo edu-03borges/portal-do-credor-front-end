@@ -5,9 +5,13 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
+import { Edit } from '@mui/icons-material';
+import Delete from '@mui/icons-material/DeleteOutline';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, Tooltip, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+
+import { Link } from 'react-router-dom';
 
 import { heightButton } from 'store/constant';
 
@@ -15,36 +19,6 @@ import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
-
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'processo', headerName: 'PROCESSO', width: 130 },
-  { field: 'unidade', headerName: 'UNIDADE', width: 250 },
-  { field: 'razao_social', headerName: 'NOME / RAZÃO SOCIAL', width: 320 },
-  { field: 'cpf_cnpj', headerName: 'CPF / CNPJ', width: 150 },
-  { field: 'cidade', headerName: 'CIDADE', width: 150 },
-  { field: 'uf', headerName: 'UF', width: 100 },
-  { field: 'em_cobranca', headerName: 'EM COBRANÇA', width: 150 },
-  { field: 'status_processo', headerName: 'STATUS DO PROCESSO', width: 200 },
-  { field: 'menu', headerName: 'MENU', width: 100 }
-];
-
-const rows = [
-  {
-    id: 1,
-    processo: '215/14602',
-    unidade: 'ALISSON_CREDOR (JURIDICO)',
-    razao_social: 'ACELINA MARIA DA CONCEICAO LEITE SILVA',
-    cpf_cnpj: '71955631115',
-    cidade: 'TUBARÃO',
-    uf: 'GO',
-    em_cobranca: 'R$ 3.930,00',
-    status_processo: '01 - ACORDO'
-  }
-];
-
-// ********************************************************************************************************
 
 const App = () => {
   const theme = useTheme();
@@ -76,6 +50,82 @@ const App = () => {
 
     console.log(data);
   };
+
+  // Temporary data *****************************************************************************************
+
+  const columns = [
+    {
+      field: 'processo',
+      headerName: 'PROCESSO',
+      width: 130,
+      renderCell: ({ row }) => (
+        <Link
+          to={`/menu/dashboard${row.id_uuid}`}
+          style={{
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+            transition: 'color 0.3s'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = theme.palette.secondary.main;
+            e.target.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = theme.palette.primary.main;
+            e.target.style.textDecoration = 'none';
+          }}
+        >
+          {row.processo}
+        </Link>
+      )
+    },
+    { field: 'unidade', headerName: 'UNIDADE', width: 250 },
+    { field: 'razao_social', headerName: 'NOME / RAZÃO SOCIAL', width: 320 },
+    { field: 'cpf_cnpj', headerName: 'CPF / CNPJ', width: 150 },
+    { field: 'cidade', headerName: 'CIDADE', width: 150 },
+    { field: 'uf', headerName: 'UF', width: 100 },
+    { field: 'em_cobranca', headerName: 'EM COBRANÇA', width: 150 },
+    { field: 'status_processo', headerName: 'STATUS DO PROCESSO', width: 200 },
+    {
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Ações',
+      resizable: false,
+      hideable: false,
+      getActions: ({ row }) => [
+        <>
+          <Tooltip title="Editar" arrow>
+            <IconButton className="m-0 p-1">
+              <Edit color="primary" fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </>,
+        <>
+          <Tooltip title="Excluir" arrow>
+            <IconButton className="m-0 p-1">
+              <Delete fontSize="small" style={{ color: 'red' }}/>
+            </IconButton>
+          </Tooltip>
+        </>,
+      ],
+    },
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      razao_social: 'ACELINA MARIA DA CONCEICAO LEITE SILVA',
+      cpf_cnpj: '71955631115',
+      cidade: 'TUBARÃO',
+      uf: 'GO',
+      em_cobranca: 'R$ 3.930,00',
+      status_processo: '01 - ACORDO'
+    }
+  ];
+
+  // ********************************************************************************************************
 
   useEffect(() => {
     setLoading(false);

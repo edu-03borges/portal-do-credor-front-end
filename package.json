@@ -13,7 +13,6 @@
     "@mui/material": "^5.15.7",
     "@mui/system": "^5.15.7",
     "@mui/utils": "^5.15.7",
-    "@mui/x-data-grid": "^7.0.0",
     "@mui/x-data-grid-pro": "^7.0.0",
     "@mui/x-date-pickers": "^7.1.0",
     "@mui/x-date-pickers-pro": "^7.1.0",

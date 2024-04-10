@@ -32,7 +32,7 @@ const columns = [
   { field: 'protesto', align: 'left', headerName: 'PROTESTO', width: 150 },
   { field: 'saldo', align: 'left', headerName: 'SALDO', width: 150 },
   { field: 'status', align: 'left', headerName: 'Status', width: 150 },
-  { field: 'obs', align: 'left', headerName: 'OBS', width: 150 }
+  { field: 'obs', align: 'left', headerName: 'OBS', minWidth: 130 }
 ];
 
 const rows = [

@@ -83,7 +83,7 @@ const Customization = () => {
   return (
     <>
       {/* toggle button */}
-      <Tooltip title="Live Customize">
+      <Tooltip title="Customizações">
         <Fab
           component="div"
           onClick={handleToggle}
@@ -124,7 +124,7 @@ const Customization = () => {
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
             <Grid item xs={12}>
               {/* font family */}
-              <SubCard title="Font Family">
+              <SubCard title="Fontes">
                 <FormControl>
                   <RadioGroup
                     aria-label="font-family"
@@ -171,7 +171,7 @@ const Customization = () => {
             </Grid>
             <Grid item xs={12}>
               {/* border radius */}
-              <SubCard title="Border Radius">
+              <SubCard title="Arredondamento de bordas">
                 <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
                   <Grid item>
                     <Typography variant="h6" color="secondary">
