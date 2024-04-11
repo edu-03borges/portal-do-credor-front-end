@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Edit } from '@mui/icons-material';
 import Delete from '@mui/icons-material/DeleteOutline';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, Tooltip, useMediaQuery } from '@mui/material';
+import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, Badge, Tooltip, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
@@ -51,6 +51,9 @@ const App = () => {
     console.log(data);
   };
 
+  const successColor = '#4caf50'; // Verde
+  const textColor = '#ffffff'; // Branco
+
   // Temporary data *****************************************************************************************
 
   const columns = [
@@ -85,7 +88,16 @@ const App = () => {
     { field: 'cidade', headerName: 'CIDADE', width: 150 },
     { field: 'uf', headerName: 'UF', width: 100 },
     { field: 'em_cobranca', headerName: 'EM COBRANÇA', width: 150 },
-    { field: 'status_processo', headerName: 'STATUS DO PROCESSO', width: 200 },
+    {
+      field: 'status_processo', 
+      headerName: 'STATUS DO PROCESSO', 
+      width: 200,
+      renderCell: ({ row }) => (
+        <Badge color="success" style={{ backgroundColor: successColor, color: textColor, height: '1.5em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.5em', margin: '0.2em', fontSize: '0.9em' }}>
+          01 - ACORDO
+        </Badge>
+      ),
+    },
     {
       field: 'actions',
       type: 'actions',

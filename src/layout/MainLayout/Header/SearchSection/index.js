@@ -68,7 +68,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       id="input-search-header"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      placeholder="Search"
+      placeholder="Localizar Processo"
       startAdornment={
         <InputAdornment position="start">
           <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
@@ -76,11 +76,13 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       }
       endAdornment={
         <InputAdornment position="end">
-          <ButtonBase sx={{ borderRadius: "12px" }}>
-            <HeaderAvatarStyle variant="rounded">
-              <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-            </HeaderAvatarStyle>
-          </ButtonBase>
+          <div style={{ pointerEvents: 'none' }}>
+            <ButtonBase sx={{ borderRadius: "12px" }}>
+              <HeaderAvatarStyle variant="rounded">
+                <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+              </HeaderAvatarStyle>
+            </ButtonBase>
+          </div>
           <Box sx={{ ml: 2 }}>
             <ButtonBase sx={{ borderRadius: "12px" }}>
               <Avatar
