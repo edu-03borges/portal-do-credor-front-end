@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 
 const StyledDataGridPro = styled(DataGridPro)({
   border: 0,
-  fontSize: '12x',
+  fontSize: '12.5px',
   '.MuiDataGrid-filler': {
     backgroundColor: '#f5f5f5'
   },

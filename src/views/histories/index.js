@@ -5,7 +5,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { heightButton } from 'store/constant';
@@ -16,30 +16,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
 
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'processo', align: 'left', headerName: 'PROCESSO', width: 150 },
-  { field: 'unidade', align: 'left', headerName: 'UNIDADE', width: 150 },
-  { field: 'devedor', align: 'left', headerName: 'DEVEDOR', width: 150 },
-  { field: 'cpf_cnpj', align: 'left', headerName: 'CPF / CNPJ', width: 150 },
-  { field: 'data', align: 'left', headerName: 'DATA', width: 150 },
-  { field: 'status_ocorrencia', align: 'center', headerName: 'STATUS DA OCORRÊNCIA', width: 150 }
-];
-
-const rows = [
-  {
-    id: 1,
-    processo: '215/14602',
-    unidade: 'ALISSON_CREDOR (JURIDICO)',
-    devedor: '<NAME>',
-    cpf_cnpj: '123.456.789-00',
-    data: '01/01/2021',
-    status_ocorrencia: 'Ativa'
-  }
-];
-
-// ********************************************************************************************************
+import { Link } from 'react-router-dom';
 
 const Histories = () => {
   const theme = useTheme();
@@ -72,6 +49,80 @@ const Histories = () => {
     console.log(data);
   };
 
+  // Temporary data *****************************************************************************************
+
+  const columns = [
+    {
+      field: 'processo',
+      align: 'left',
+      headerName: 'Processo',
+      maxWidth: 150,
+      renderCell: ({ row }) => (
+        <Link
+          to={`/menu/dashboard`}
+          style={{
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+            transition: 'color 0.3s'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = theme.palette.secondary.main;
+            e.target.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = theme.palette.primary.main;
+            e.target.style.textDecoration = 'none';
+          }}
+        >
+          {row.processo}
+        </Link>
+      )
+    },
+    { field: 'unidade', align: 'left', headerName: 'Unidade', minWidth: 250 },
+    { field: 'devedor', align: 'left', headerName: 'Devedor', minWidth: 250 },
+    { field: 'cpf_cnpj', align: 'left', headerName: 'CNPJ/CPF', maxWidth: 170 },
+    { field: 'data', align: 'left', headerName: 'Data', maxWidth: 170 },
+    {
+      field: 'status_ocorrencia',
+      align: 'center',
+      headerName: 'Status da Ocorrência',
+      maxWidth: 180,
+      renderCell: ({ row }) => (
+        <Badge
+          color="success"
+          style={{
+            backgroundColor: theme.palette.success.dark,
+            color: '#ffffff',
+            height: '1.5em',
+            borderRadius: '1em',
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'auto',
+            padding: '0 0.5em',
+            margin: '0.2em',
+            fontSize: '0.9em'
+          }}
+        >
+          01.01 - ACORDO
+        </Badge>
+      )
+    }
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      devedor: 'ALESSANDRO SILVA',
+      cpf_cnpj: '123.456.789-00',
+      data: '01/01/2021'
+    }
+  ];
+
+  // ********************************************************************************************************
+
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -94,7 +145,7 @@ const Histories = () => {
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
               <StyledMenuItemBlue>
                 <DescriptionOutlinedIcon sx={{ marginRight: '5px' }} />
-                  Exportar Excel
+                Exportar Excel
               </StyledMenuItemBlue>
             </Menu>
           </Container>

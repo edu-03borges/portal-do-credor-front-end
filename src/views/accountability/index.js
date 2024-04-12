@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { heightButton } from 'store/constant';
@@ -15,30 +16,6 @@ import CustomDateRangePicker from 'ui-component/CustomDateRangePicker';
 import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import { StyledMenuItemBlue, StyledMenuItemGreen } from 'ui-component/menuItemCustom';
-
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'data', align: 'left', headerName: 'DATA', width: 120 },
-  { field: 'unidade', align: 'left', headerName: 'UNIDADE', width: 150 },
-  { field: 'nRepasse', align: 'left', headerName: 'Nº REPASSE', width: 150 },
-  { field: 'localPagamento', align: 'left', headerName: 'LOCAL PAGAMENTO', width: 200 },
-  { field: 'totalCredito', align: 'left', headerName: 'TOTAL CRÉDITO', width: 150 },
-  { field: 'taxaContrato', align: 'left', headerName: 'TAXA CONTRATO', width: 150 },
-  { field: 'pagtoDireto', align: 'left', headerName: 'PAGTO DIRETO', width: 150 },
-  { field: 'totalRepasse', align: 'left', headerName: 'TOTAL REPASSE', width: 150 },
-  { field: 'menu', align: 'left', headerName: 'MENU', width: 120 },
-];
-
-const rows = [
-  { id: 1, data: '01/01/2024', unidade: 'Unidade A', nRepasse: '123456', localPagamento: 'Local A', totalCredito: 1000, taxaContrato: 10, pagtoDireto: 500, totalRepasse: 500, menu: 'Detalhes' },
-  { id: 2, data: '02/01/2024', unidade: 'Unidade B', nRepasse: '789012', localPagamento: 'Local B', totalCredito: 1500, taxaContrato: 15, pagtoDireto: 700, totalRepasse: 800, menu: 'Detalhes' },
-  { id: 3, data: '03/01/2024', unidade: 'Unidade C', nRepasse: '345678', localPagamento: 'Local C', totalCredito: 2000, taxaContrato: 20, pagtoDireto: 1000, totalRepasse: 1000, menu: 'Detalhes' },
-  { id: 4, data: '04/01/2024', unidade: 'Unidade D', nRepasse: '901234', localPagamento: 'Local D', totalCredito: 2500, taxaContrato: 25, pagtoDireto: 1200, totalRepasse: 1300, menu: 'Detalhes' },
-  { id: 5, data: '05/01/2024', unidade: 'Unidade E', nRepasse: '567890', localPagamento: 'Local E', totalCredito: 3000, taxaContrato: 30, pagtoDireto: 1500, totalRepasse: 1500, menu: 'Detalhes' },
-];
-
-// ********************************************************************************************************
 
 const Accountability = () => {
   const theme = useTheme();
@@ -70,6 +47,70 @@ const Accountability = () => {
 
     console.log(data);
   };
+
+  // Temporary data *****************************************************************************************
+
+  const columns = [
+    { field: 'data', align: 'left', headerName: 'Data', width: 120 },
+    { field: 'unidade', align: 'left', headerName: 'Unidade', width: 150 },
+    { field: 'nRepasse', align: 'left', headerName: 'Nº Repasse', width: 150 },
+    { field: 'localPagamento', align: 'left', headerName: 'Local Pagamento', width: 200 },
+    { field: 'totalCredito', align: 'left', headerName: 'Total Crédito', width: 150 },
+    { field: 'taxaContrato', align: 'left', headerName: 'Taxa Contrato', width: 150 },
+    { field: 'pagtoDireto', align: 'left', headerName: 'Pagto Direto', width: 150 },
+    { field: 'totalRepasse', align: 'left', headerName: 'Total Repasse', width: 150 },
+    {
+      field: 'menu',
+      align: 'left',
+      headerName: 'Menu',
+      width: 120,
+      renderCell: ({ row }) => [
+        <Tooltip title="Imprimir" arrow>
+          <IconButton style={{ display: 'flex', justifyContent: 'right' }}>
+            <PictureAsPdfIcon sx={{ color: 'red' }} fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      ]
+    }
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      data: '01/01/2024',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      nRepasse: '123456',
+      localPagamento: 'COBRADORA',
+      totalCredito: 'R$ 1.000,00',
+      taxaContrato: 'R$ 10,00',
+      pagtoDireto: 'R$ 500,00',
+      totalRepasse: 'R$ 500,00'
+    },
+    {
+      id: 2,
+      data: '02/01/2024',
+      unidade: 'ALISSON_CREDOR',
+      nRepasse: '789012',
+      localPagamento: 'COBRADORA',
+      totalCredito: 'R$ 1.500,00',
+      taxaContrato: 'R$ 15,00',
+      pagtoDireto: 'R$ 700,00',
+      totalRepasse: 'R$ 800,00'
+    },
+    {
+      id: 3,
+      data: '03/01/2024',
+      unidade: 'ALISSON_CREDOR (CAMPANHA)',
+      nRepasse: '345678',
+      localPagamento: 'CREDORA',
+      totalCredito: 'R$ 2.000,00',
+      taxaContrato: 'R$ 20,00',
+      pagtoDireto: 'R$ 1.000,00',
+      totalRepasse: 'R$ 1.000,00'
+    }
+  ];
+
+  // ********************************************************************************************************
 
   useEffect(() => {
     setLoading(false);

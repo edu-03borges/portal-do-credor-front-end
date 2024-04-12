@@ -1,43 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Container, Grid, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, MenuItem, TextField, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import UploadFileIcon from '@mui/icons-material/UploadFile';
 import CheckIcon from '@mui/icons-material/Check';
+import Delete from '@mui/icons-material/DeleteOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 import { heightButton } from 'store/constant';
 
 import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import CustomDataGrid from 'ui-component/CustomDataGrid';
-
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'arquivo', headerName: 'Arquivo', width: 200, align: 'left' },
-  { field: 'enviadoEm', headerName: 'Enviado em', width: 150, align: 'left' },
-  { field: 'tamanho', headerName: 'Tamanho', width: 120, align: 'left' },
-  { field: 'status', headerName: 'Status', width: 120, align: 'left' },
-  { field: 'processadoEm', headerName: 'Processado em', width: 150, align: 'left' },
-  { field: 'menu', headerName: 'Menu', width: 100, align: 'left' }
-];
-
-const rows = [
-  {
-    id: 1,
-    arquivo: 'Documento1.pdf',
-    enviadoEm: '01/04/2022',
-    tamanho: '1.5 MB',
-    status: 'Concluído',
-    processadoEm: '02/04/2022',
-    menu: '...'
-  },
-  { id: 2, arquivo: 'Planilha1.xlsx', enviadoEm: '03/04/2022', tamanho: '0.8 MB', status: 'Pendente', processadoEm: '-', menu: '...' }
-];
-
-// ********************************************************************************************************
 
 const borderosForBilling = () => {
   const theme = useTheme();
@@ -85,6 +60,85 @@ const borderosForBilling = () => {
   const clearFile = () => {
     setSelectedFile(null);
   };
+
+  // Temporary data *****************************************************************************************
+
+  const columns = [
+    { field: 'arquivo', headerName: 'Arquivo', width: 200, align: 'left' },
+    { field: 'enviadoEm', headerName: 'Enviado em', width: 150, align: 'left' },
+    { field: 'tamanho', headerName: 'Tamanho', width: 120, align: 'left' },
+    {
+      field: 'status',
+      headerName: 'Status',
+      width: 120,
+      align: 'left',
+      renderCell: ({ row }) => {
+        let backgroundColor, textColor;
+
+        switch (row.status) {
+          case 'CONCLUÍDO':
+            backgroundColor = theme.palette.success.dark;
+            textColor = '#ffffff';
+            break;
+          case 'PENDENTE':
+            backgroundColor = '#00bcd4';
+            textColor = '#ffffff';
+            break;
+        }
+
+        return (
+          <Badge
+            style={{
+              backgroundColor,
+              color: textColor,
+              height: '1.5em',
+              borderRadius: '1em',
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'auto',
+              padding: '0 0.5em',
+              margin: '0.2em',
+              fontSize: '0.9em'
+            }}
+          >
+            {row.status}
+          </Badge>
+        );
+      }
+    },
+    { field: 'processadoEm', headerName: 'Processado em', width: 150, align: 'left' },
+    {
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Menu',
+      resizable: false,
+      hideable: false,
+      getActions: ({ row }) => [
+        <>
+          <Tooltip title="Excluir" arrow>
+            <IconButton className="m-0 p-1">
+              <Delete fontSize="small" style={{ color: 'red' }} />
+            </IconButton>
+          </Tooltip>
+        </>
+      ]
+    }
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      arquivo: 'Documento1.pdf',
+      enviadoEm: '01/04/2022',
+      tamanho: '1.5 MB',
+      status: 'CONCLUÍDO',
+      processadoEm: '02/04/2022'
+    },
+    { id: 2, arquivo: 'Planilha1.xlsx', enviadoEm: '03/04/2022', tamanho: '0.8 MB', status: 'PENDENTE', processadoEm: '-' }
+  ];
+
+  // ********************************************************************************************************
 
   useEffect(() => {
     setLoading(false);
@@ -138,16 +192,15 @@ const borderosForBilling = () => {
                   Carregar Arquivo
                 </Button>
               </Grid>
-              <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2}>
+              <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2} hidden={!selectedFile}>
                 <Button
                   variant="contained"
                   fullWidth
                   startIcon={<DoDisturbIcon />}
                   sx={{
-                    backgroundColor: theme.palette.error.light,
+                    backgroundColor: theme.palette.error.main,
                     '&:hover': {
-                      background: theme.palette.error.dark,
-                      color: theme.palette.primary.light
+                      backgroundColor: theme.palette.error.dark
                     },
                     height: theme.spacing(heightButton)
                   }}
@@ -156,7 +209,7 @@ const borderosForBilling = () => {
                   Cancelar
                 </Button>
               </Grid>
-              <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2}>
+              <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2} hidden={!selectedFile}>
                 <Button
                   variant="contained"
                   fullWidth

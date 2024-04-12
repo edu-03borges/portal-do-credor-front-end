@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import ClearIcon from '@mui/icons-material/Clear';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import { Edit } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
+import Delete from '@mui/icons-material/DeleteOutline';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-import { Edit } from '@mui/icons-material';
-import Delete from '@mui/icons-material/DeleteOutline';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, Badge, Tooltip, useMediaQuery } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
@@ -51,19 +51,16 @@ const App = () => {
     console.log(data);
   };
 
-  const successColor = '#4caf50'; // Verde
-  const textColor = '#ffffff'; // Branco
-
   // Temporary data *****************************************************************************************
 
   const columns = [
     {
       field: 'processo',
-      headerName: 'PROCESSO',
+      headerName: 'Processo',
       width: 130,
       renderCell: ({ row }) => (
         <Link
-          to={`/menu/dashboard${row.id_uuid}`}
+          to={`/menu/dashboard`}
           style={{
             color: theme.palette.primary.main,
             textDecoration: 'none',
@@ -82,18 +79,18 @@ const App = () => {
         </Link>
       )
     },
-    { field: 'unidade', headerName: 'UNIDADE', width: 250 },
-    { field: 'razao_social', headerName: 'NOME / RAZÃO SOCIAL', width: 320 },
-    { field: 'cpf_cnpj', headerName: 'CPF / CNPJ', width: 150 },
-    { field: 'cidade', headerName: 'CIDADE', width: 150 },
+    { field: 'unidade', headerName: 'Unidade', minWid: 260 },
+    { field: 'razao_social', headerName: 'Nome/Razão Social', width: 320 },
+    { field: 'cpf_cnpj', headerName: 'CNPJ/CPF', width: 150 },
+    { field: 'cidade', headerName: 'Cidade', width: 150 },
     { field: 'uf', headerName: 'UF', width: 100 },
-    { field: 'em_cobranca', headerName: 'EM COBRANÇA', width: 150 },
+    { field: 'em_cobranca', headerName: 'Em Cobrança', width: 150 },
     {
       field: 'status_processo', 
-      headerName: 'STATUS DO PROCESSO', 
+      headerName: 'Status do Processo', 
       width: 200,
       renderCell: ({ row }) => (
-        <Badge color="success" style={{ backgroundColor: successColor, color: textColor, height: '1.5em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.5em', margin: '0.2em', fontSize: '0.9em' }}>
+        <Badge color="success" style={{ backgroundColor: theme.palette.success.dark, color: '#ffffff', height: '1.5em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.5em', margin: '0.2em', fontSize: '0.9em' }}>
           01 - ACORDO
         </Badge>
       ),
@@ -132,8 +129,7 @@ const App = () => {
       cpf_cnpj: '71955631115',
       cidade: 'TUBARÃO',
       uf: 'GO',
-      em_cobranca: 'R$ 3.930,00',
-      status_processo: '01 - ACORDO'
+      em_cobranca: 'R$ 3.930,00'
     }
   ];
 

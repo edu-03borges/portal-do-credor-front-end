@@ -3,42 +3,21 @@ import { useEffect, useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { heightButton } from 'store/constant';
+
+import { Link } from 'react-router-dom';
 
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 import CustomDateRangePicker from 'ui-component/CustomDateRangePicker';
 import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
-import { StyledMenuItemBlue, StyledMenuItemGreen } from 'ui-component/menuItemCustom';
-
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'processo', align: 'left', headerName: 'PROCESSO', width: 120 },
-  { field: 'unidade', align: 'left', headerName: 'UNIDADE', width: 150 },
-  { field: 'data', align: 'left', headerName: 'DATA', width: 120 },
-  { field: 'titulos', align: 'left', headerName: 'TITULOS', width: 150 },
-  { field: 'devedor', align: 'left', headerName: 'DEVEDOR', width: 150 },
-  { field: 'cpfCnpj', align: 'left', headerName: 'CPF / CNPJ', width: 150 },
-  { field: 'valorDevolvido', align: 'left', headerName: 'VALOR DEVOLVIDO', width: 150 },
-  { field: 'motivo', align: 'left', headerName: 'MOTIVO', width: 200 },
-  { field: 'menu', align: 'left', headerName: 'MENU', width: 120 },
-];
-
-const rows = [
-  { id: 1, processo: 'Proc 1', unidade: 'Unidade A', data: '01/01/2024', titulos: 'Título 1', devedor: 'Devedor A', cpfCnpj: '123.456.789-00', valorDevolvido: 1000, motivo: 'Motivo A', menu: 'Detalhes' },
-  { id: 2, processo: 'Proc 2', unidade: 'Unidade B', data: '02/01/2024', titulos: 'Título 2', devedor: 'Devedor B', cpfCnpj: '987.654.321-00', valorDevolvido: 1500, motivo: 'Motivo B', menu: 'Detalhes' },
-  { id: 3, processo: 'Proc 3', unidade: 'Unidade C', data: '03/01/2024', titulos: 'Título 3', devedor: 'Devedor C', cpfCnpj: '456.789.123-00', valorDevolvido: 2000, motivo: 'Motivo C', menu: 'Detalhes' },
-  { id: 4, processo: 'Proc 4', unidade: 'Unidade D', data: '04/01/2024', titulos: 'Título 4', devedor: 'Devedor D', cpfCnpj: '789.123.456-00', valorDevolvido: 2500, motivo: 'Motivo D', menu: 'Detalhes' },
-  { id: 5, processo: 'Proc 5', unidade: 'Unidade E', data: '05/01/2024', titulos: 'Título 5', devedor: 'Devedor E', cpfCnpj: '321.654.987-00', valorDevolvido: 3000, motivo: 'Motivo E', menu: 'Detalhes' },
-];
-
-// ********************************************************************************************************
+import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
 
 const Returns = () => {
   const theme = useTheme();
@@ -70,6 +49,109 @@ const Returns = () => {
 
     console.log(data);
   };
+
+  // Temporary data *****************************************************************************************
+
+const columns = [
+  {
+    field: 'processo',
+    align: 'left',
+    headerName: 'Processo',
+    width: 120,
+    renderCell: ({ row }) => (
+      <Link
+        to={`/menu/dashboard`}
+        style={{
+          color: theme.palette.primary.main,
+          textDecoration: 'none',
+          transition: 'color 0.3s'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.color = theme.palette.secondary.main;
+          e.target.style.textDecoration = 'underline';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.color = theme.palette.primary.main;
+          e.target.style.textDecoration = 'none';
+        }}
+      >
+        {row.processo}
+      </Link>
+    )
+  },
+  { field: 'unidade', align: 'left', headerName: 'Unidade', width: 150 },
+  { field: 'data', align: 'left', headerName: 'Data', width: 120 },
+  { field: 'titulos', align: 'left', headerName: 'Titulos', width: 150 },
+  { field: 'devedor', align: 'left', headerName: 'Devedor', width: 150 },
+  { field: 'cpfCnpj', align: 'left', headerName: 'CNPJ/CPF', width: 150 },
+  { field: 'valorDevolvido', align: 'left', headerName: 'Valor Devolvido', width: 150 },
+  { field: 'motivo', align: 'left', headerName: 'Motivo', width: 200,
+    renderCell: ({ row }) => {
+      let backgroundColor, textColor;
+    
+      switch (row.motivo) {
+        case '01.01 - ACORDO':
+          backgroundColor = theme.palette.success.dark;
+          textColor = '#ffffff';
+          break;
+        case '02 - DEVOLUÇÃO':
+          backgroundColor = '#e8eaf6';
+          textColor = '#212529';
+          break;
+      }
+    
+      return (
+        <Badge
+          style={{
+            backgroundColor,
+            color: textColor,
+            height: '1.5em',
+            borderRadius: '1em',
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'auto',
+            padding: '0 0.5em',
+            margin: '0.2em',
+            fontSize: '0.9em'
+          }}
+        >
+          {row.motivo}
+        </Badge>
+      );
+    }
+  },
+  {
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Menu',
+    resizable: false,
+    hideable: false,
+    getActions: ({ row }) => [
+      <>
+        <Tooltip title="Imprimir" arrow>
+          <IconButton className="m-0 p-1">
+            <PictureAsPdfIcon sx={{ color: 'red' }} fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      </>,
+      <>
+        <Tooltip title="Exportar Excel" arrow>
+          <IconButton className="m-0 p-1">
+            <DescriptionOutlinedIcon sx={{ color: '#1565c0' }} fontSize="small"/>
+          </IconButton>
+        </Tooltip>
+      </>,
+    ],
+  },
+];
+
+const rows = [
+  { id: 1, processo: '215/14602', unidade: 'Unidade A', data: '01/01/2024', titulos: 'Título 1', devedor: 'Devedor A', cpfCnpj: '123.456.789-00', valorDevolvido: 'R$ 1.120,00', motivo: '01.01 - ACORDO', menu: 'Detalhes' },
+  { id: 2, processo: '215/14603', unidade: 'Unidade B', data: '02/01/2024', titulos: 'Título 2', devedor: 'Devedor B', cpfCnpj: '987.654.321-00', valorDevolvido: 'R$ 550,00', motivo: '02 - DEVOLUÇÃO', menu: 'Detalhes' },
+];
+
+// ********************************************************************************************************
 
   useEffect(() => {
     setLoading(false);

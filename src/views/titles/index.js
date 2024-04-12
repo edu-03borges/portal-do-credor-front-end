@@ -5,125 +5,18 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, Menu, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { heightButton } from 'store/constant';
+
+import { Link } from 'react-router-dom';
 
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 import CustomDateRangePicker from 'ui-component/CustomDateRangePicker';
 import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
-
-// Temporary data *****************************************************************************************
-
-const columns = [
-  { field: 'processo', align: 'left', headerName: 'PROCESSO', width: 200 },
-  { field: 'unidade', align: 'left', headerName: 'UNIDADE', width: 230 },
-  { field: 'devedor', align: 'left', headerName: 'DEVEDOR', width: 230 },
-  { field: 'cpf_cnpj', align: 'left', headerName: 'CPF / CNPJ', width: 150 },
-  { field: 'data_cad', align: 'left', headerName: 'CADASTRO', width: 150 },
-  { field: 'especie', align: 'left', headerName: 'ESPÉCIE', width: 150 },
-  { field: 'ntitulo', align: 'left', headerName: 'Nº TITULO', width: 150 },
-  { field: 'parcela', align: 'left', headerName: 'Parcela', width: 150 },
-  { field: 'data_vencto', align: 'left', headerName: 'Vencimento', width: 150 },
-  { field: 'valor', align: 'left', headerName: 'VALOR', width: 150 },
-  { field: 'protesto', align: 'left', headerName: 'PROTESTO', width: 150 },
-  { field: 'saldo', align: 'left', headerName: 'SALDO', width: 150 },
-  { field: 'status', align: 'left', headerName: 'Status', width: 150 },
-  { field: 'obs', align: 'left', headerName: 'OBS', minWidth: 130 }
-];
-
-const rows = [
-  {
-    id: 1,
-    processo: 'Processo 1',
-    unidade: 'Unidade 1',
-    devedor: 'Devedor 1',
-    cpf_cnpj: '111.111.111-11',
-    data_cad: '01/01/2022',
-    especie: 'Especie 1',
-    ntitulo: '12345',
-    parcela: 'Parcela 1',
-    data_vencto: '01/02/2022',
-    valor: 1000.0,
-    protesto: 0,
-    saldo: 500.0,
-    status: 'Pago',
-    obs: 'Observação 1'
-  },
-  {
-    id: 2,
-    processo: 'Processo 2',
-    unidade: 'Unidade 2',
-    devedor: 'Devedor 2',
-    cpf_cnpj: '222.222.222-22',
-    data_cad: '02/02/2022',
-    especie: 'Especie 2',
-    ntitulo: '54321',
-    parcela: 'Parcela 2',
-    data_vencto: '02/03/2022',
-    valor: 2000.0,
-    protesto: 0,
-    saldo: 1000.0,
-    status: 'Em aberto',
-    obs: 'Observação 2'
-  },
-  {
-    id: 3,
-    processo: 'Processo 3',
-    unidade: 'Unidade 3',
-    devedor: 'Devedor 3',
-    cpf_cnpj: '333.333.333-33',
-    data_cad: '03/03/2022',
-    especie: 'Especie 3',
-    ntitulo: '67890',
-    parcela: 'Parcela 3',
-    data_vencto: '03/04/2022',
-    valor: 3000.0,
-    protesto: 1,
-    saldo: 1500.0,
-    status: 'Em protesto',
-    obs: 'Observação 3'
-  },
-  {
-    id: 4,
-    processo: 'Processo 4',
-    unidade: 'Unidade 4',
-    devedor: 'Devedor 4',
-    cpf_cnpj: '444.444.444-44',
-    data_cad: '04/04/2022',
-    especie: 'Especie 4',
-    ntitulo: '13579',
-    parcela: 'Parcela 4',
-    data_vencto: '04/05/2022',
-    valor: 4000.0,
-    protesto: 0,
-    saldo: 2000.0,
-    status: 'Em aberto',
-    obs: 'Observação 4'
-  },
-  {
-    id: 5,
-    processo: 'Processo 5',
-    unidade: 'Unidade 5',
-    devedor: 'Devedor 5',
-    cpf_cnpj: '555.555.555-55',
-    data_cad: '05/05/2022',
-    especie: 'Especie 5',
-    ntitulo: '24680',
-    parcela: 'Parcela 5',
-    data_vencto: '05/06/2022',
-    valor: 5000.0,
-    protesto: 1,
-    saldo: 2500.0,
-    status: 'Em protesto',
-    obs: 'Observação 5'
-  }
-];
-
-// ********************************************************************************************************
 
 const Titles = () => {
   const theme = useTheme();
@@ -155,6 +48,149 @@ const Titles = () => {
 
     console.log(data);
   };
+
+  // Temporary data *****************************************************************************************
+
+  const columns = [
+    {
+      field: 'processo',
+      align: 'left',
+      headerName: 'Processo',
+      minWidth: 110,
+      renderCell: ({ row }) => (
+        <Link
+          to={`/menu/dashboard`}
+          style={{
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+            transition: 'color 0.3s'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = theme.palette.secondary.main;
+            e.target.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = theme.palette.primary.main;
+            e.target.style.textDecoration = 'none';
+          }}
+        >
+          {row.processo}
+        </Link>
+      )
+    },
+    { field: 'unidade', align: 'left', headerName: 'Unidade', minWidth: 220 },
+    { field: 'devedor', align: 'left', headerName: 'Devedor', minWidth: 220 },
+    { field: 'cpf_cnpj', align: 'left', headerName: 'CNPJ/CPF', minWidth: 120 },
+    { field: 'data_cad', align: 'left', headerName: 'Cadastro', minWidth: 120 },
+    { field: 'especie', align: 'left', headerName: 'Espécie', minWidth: 100 },
+    { field: 'ntitulo', align: 'left', headerName: 'Nº Título', minWidth: 110 },
+    { field: 'parcela', align: 'left', headerName: 'Parcela', minWidth: 100 },
+    { field: 'data_vencto', align: 'left', headerName: 'Vencimento', minWidth: 120 },
+    { field: 'valor', align: 'left', headerName: 'Valor', minWidth: 120 },
+    { field: 'protesto', align: 'left', headerName: 'Protesto', minWidth: 120 },
+    { field: 'saldo', align: 'left', headerName: 'Saldo', minWidth: 120 },
+    {
+      field: 'status',
+      align: 'left',
+      headerName: 'Status',
+      minWidth: 120,
+      renderCell: ({ row }) => {
+        let backgroundColor, textColor;
+      
+        switch (row.status) {
+          case 'QUITADO':
+            backgroundColor = theme.palette.success.dark;
+            textColor = '#ffffff';
+            break;
+          case 'ABERTO':
+            backgroundColor = '#2196f3';
+            textColor = '#ffffff';
+            break;
+          case 'PARCIAL':
+            backgroundColor = '#00bcd4';
+            textColor = '#ffffff';
+            break;
+        }
+      
+        return (
+          <Badge
+            style={{
+              backgroundColor,
+              color: textColor,
+              height: '1.5em',
+              borderRadius: '1em',
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'auto',
+              padding: '0 0.5em',
+              margin: '0.2em',
+              fontSize: '0.9em'
+            }}
+          >
+            {row.status}
+          </Badge>
+        );
+      }
+    },
+    { field: 'obs', align: 'left', headerName: 'OBS', minWidth: 130 }
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      devedor: 'RAZÃO DEVEDOR 1',
+      cpf_cnpj: '111.111.111-11',
+      data_cad: '01/01/2022',
+      especie: 'BL',
+      ntitulo: '12345',
+      parcela: '01/02',
+      data_vencto: '01/02/2022',
+      valor: 'R$ 1.000,00',
+      protesto: 'R$ 0,00',
+      saldo: 'R$ 0,00',
+      status: 'QUITADO',
+      obs: 'OBS 1'
+    },
+    {
+      id: 2,
+      processo: '215/14603',
+      unidade: 'ALISSON_CREDOR',
+      devedor: 'RAZÃO DEVEDOR 2',
+      cpf_cnpj: '222.222.222-22',
+      data_cad: '02/02/2022',
+      especie: 'NF',
+      ntitulo: '54321',
+      parcela: '04/04',
+      data_vencto: '02/03/2022',
+      valor: 'R$ 250,00',
+      protesto: 'R$ 0,00',
+      saldo: 'R$ 250,00',
+      status: 'ABERTO',
+      obs: 'OBS 2'
+    },
+    {
+      id: 3,
+      processo: '215/14604',
+      unidade: 'ALISSON_CREDOR (DIVERSOS)',
+      devedor: 'RAZÃO DEVEDOR 3',
+      cpf_cnpj: '333.333.333-33',
+      data_cad: '03/03/2022',
+      especie: 'NF 2',
+      ntitulo: '1245',
+      parcela: '01/01',
+      data_vencto: '12/04/2024',
+      valor: 'R$ 100,00',
+      protesto: 'R$ 0,00',
+      saldo: 'R$ 500,00',
+      status: 'PARCIAL',
+      obs: 'OBS 3'
+    }
+  ];
+
+  // ********************************************************************************************************
 
   useEffect(() => {
     setLoading(false);
