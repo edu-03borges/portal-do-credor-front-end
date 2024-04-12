@@ -90,7 +90,7 @@ const App = () => {
       headerName: 'Status do Processo', 
       width: 200,
       renderCell: ({ row }) => (
-        <Badge color="success" style={{ backgroundColor: theme.palette.success.dark, color: '#ffffff', height: '1.5em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.5em', margin: '0.2em', fontSize: '0.9em' }}>
+        <Badge color="success" style={{ backgroundColor: theme.palette.success.dark, color: '#ffffff', height: '1.7em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.8em', margin: '0.2em', fontSize: '0.9em', marginTop: '0px' }}>
           01 - ACORDO
         </Badge>
       ),

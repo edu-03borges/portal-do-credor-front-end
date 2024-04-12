@@ -105,15 +105,16 @@ const columns = [
           style={{
             backgroundColor,
             color: textColor,
-            height: '1.5em',
+            height: '1.7em',
             borderRadius: '1em',
             display: 'inline-flex',
             justifyContent: 'center',
             alignItems: 'center',
             width: 'auto',
-            padding: '0 0.5em',
+            padding: '0 0.8em',
             margin: '0.2em',
-            fontSize: '0.9em'
+            fontSize: '0.9em',
+            marginTop: '0px'
           }}
         >
           {row.motivo}

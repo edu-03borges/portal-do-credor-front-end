@@ -74,15 +74,15 @@ const chartData = {
   },
   series: [
     {
-      name: "Investment",
+      name: "Investimento",
       data: [9000, 6000, 3000, 30000, 35, 12000],
     },
     {
-      name: "Loss",
+      name: "Perda",
       data: [400, 4000, 500, 15000, 65, 5000],
     },
     {
-      name: "Profit",
+      name: "Lucro",
       data: [400, 0, 35, 700, 0, 900],
     },
   ],
