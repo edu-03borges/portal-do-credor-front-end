@@ -9,7 +9,10 @@ import themes from "themes";
 
 import NavigationScroll from "layout/NavigationScroll";
 
-const App = () => {
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const App = (props) => {
   const customization = useSelector((state) => state.customization);
 
   return (
@@ -18,6 +21,18 @@ const App = () => {
         <CssBaseline />
         <NavigationScroll>
           <Routes />
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </NavigationScroll>
       </ThemeProvider>
     </StyledEngineProvider>

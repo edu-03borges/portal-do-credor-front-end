@@ -4,3 +4,5 @@ export const MENU_TOGGLE = "@customization/MENU_TOGGLE";
 export const MENU_OPEN = "@customization/MENU_OPEN";
 export const SET_FONT_FAMILY = "@customization/SET_FONT_FAMILY";
 export const SET_BORDER_RADIUS = "@customization/SET_BORDER_RADIUS";
+export const SIGNIN_USER_SUCCESS = 'signin_user_success';
+export const SIGNOUT_USER_SUCCESS = 'signout_user_success';

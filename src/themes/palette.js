@@ -68,5 +68,13 @@ export default function themePalette(theme) {
       paper: theme.paper,
       default: theme.backgroundDefault,
     },
+    custom: {
+      greenCustomLight: theme.colors?.greenCustomLight,
+      greenCustomDark: theme.colors?.greenCustomDark,
+      purpleCustomLight: theme.colors?.purpleCustomLight,
+      purpleCustomDark: theme.colors?.purpleCustomDark,
+      blueCustomLight: theme.colors?.blueCustomLight,
+      blueCustomDark: theme.colors?.blueCustomDark,
+    }
   };
 }

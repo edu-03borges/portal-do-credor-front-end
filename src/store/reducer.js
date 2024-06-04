@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
 
-// reducer import
 import customizationReducer from "./customizationReducer";
-
-// ==============================|| COMBINE REDUCER ||============================== //
+import auth from './auth';
 
 const reducer = combineReducers({
   customization: customizationReducer,
+  auth,
 });
 
 export default reducer;

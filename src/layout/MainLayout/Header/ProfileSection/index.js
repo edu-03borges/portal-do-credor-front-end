@@ -35,7 +35,8 @@ const ProfileSection = () => {
 
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log("Logout");
+    localStorage.removeItem('tokenportalcredor');
+    navigate('/login');
   };
 
   const handleClose = (event) => {

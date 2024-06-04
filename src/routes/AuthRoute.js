@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from "ui-component/Loadable";
 
@@ -10,9 +10,4 @@ const AuthRoute = () => {
   return isAuthenticated ? <Navigate to="/" /> : <AuthLogin />;
 };
 
-const AuthenticationRoutes = {
-  path: "/login",
-  element: <AuthRoute />,
-};
-
-export default AuthenticationRoutes;
+export default AuthRoute;

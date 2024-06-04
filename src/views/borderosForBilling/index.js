@@ -14,7 +14,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 
-const borderosForBilling = () => {
+const BorderosForBilling = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -33,8 +33,6 @@ const borderosForBilling = () => {
     });
 
     data.dateRange = selectedDateRange;
-
-    console.log(data);
   };
 
   const handleFileChange = (event) => {
@@ -74,25 +72,29 @@ const borderosForBilling = () => {
       align: 'left',
       renderCell: ({ row }) => {
         let backgroundColor, textColor;
-
+      
         switch (row.status) {
           case 'CONCLUÍDO':
-            backgroundColor = theme.palette.success.dark;
-            textColor = '#ffffff';
+            backgroundColor = theme.palette.custom.greenCustomLight;
+            textColor = theme.palette.custom.greenCustomDark;
             break;
           case 'PENDENTE':
-            backgroundColor = '#00bcd4';
-            textColor = '#ffffff';
+            backgroundColor = theme.palette.custom.blueCustomLight;
+            textColor = theme.palette.custom.blueCustomDark;
+            break;
+          case 'NA FILA':
+            backgroundColor = theme.palette.custom.purpleCustomLight;
+            textColor = theme.palette.custom.purpleCustomDark;
             break;
         }
-
+      
         return (
           <Badge
             style={{
               backgroundColor,
               color: textColor,
               height: '1.7em',
-              borderRadius: '1em',
+              borderRadius: 3,
               display: 'inline-flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -136,7 +138,8 @@ const borderosForBilling = () => {
       status: 'CONCLUÍDO',
       processadoEm: '02/04/2022'
     },
-    { id: 2, arquivo: 'Planilha1.xlsx', enviadoEm: '03/04/2022', tamanho: '0.8 MB', status: 'PENDENTE', processadoEm: '-' }
+    { id: 2, arquivo: 'Planilha1.xlsx', enviadoEm: '03/04/2022', tamanho: '0.8 MB', status: 'PENDENTE', processadoEm: '-' },
+    { id: 3, arquivo: 'Planilha1.xlsx', enviadoEm: '03/04/2022', tamanho: '0.8 MB', status: 'NA FILA', processadoEm: '-' }
   ];
 
   // ********************************************************************************************************
@@ -265,4 +268,4 @@ const borderosForBilling = () => {
   );
 };
 
-export default borderosForBilling;
+export default BorderosForBilling;

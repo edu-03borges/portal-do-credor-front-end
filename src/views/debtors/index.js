@@ -20,6 +20,8 @@ import GeneralSkeleton from 'ui-component/cards/Skeleton/GeneralSkeleton';
 import CustomDataGrid from 'ui-component/CustomDataGrid';
 import { StyledMenuItemBlue } from 'ui-component/menuItemCustom';
 
+import { useSelector } from 'react-redux';
+
 const App = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -27,6 +29,8 @@ const App = () => {
   const [isLoading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedDateRange, setSelectedDateRange] = useState(null);
+
+  const authUserInfo = useSelector(({ auth }) => auth.authUserInfo);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +52,6 @@ const App = () => {
 
     data.dateRange = selectedDateRange;
 
-    console.log(data);
   };
 
   // Temporary data *****************************************************************************************
@@ -57,7 +60,7 @@ const App = () => {
     {
       field: 'processo',
       headerName: 'Processo',
-      width: 130,
+      width: 100,
       renderCell: ({ row }) => (
         <Link
           to={`/menu/dashboard`}
@@ -79,21 +82,55 @@ const App = () => {
         </Link>
       )
     },
-    { field: 'unidade', headerName: 'Unidade', minWid: 260 },
+    { field: 'unidade', headerName: 'Unidade', width: 260 },
     { field: 'razao_social', headerName: 'Nome/Razão Social', width: 320 },
     { field: 'cpf_cnpj', headerName: 'CNPJ/CPF', width: 150 },
     { field: 'cidade', headerName: 'Cidade', width: 150 },
     { field: 'uf', headerName: 'UF', width: 100 },
     { field: 'em_cobranca', headerName: 'Em Cobrança', width: 150 },
     {
-      field: 'status_processo', 
-      headerName: 'Status do Processo', 
+      field: 'status_processo',
+      headerName: 'Status do Processo',
       width: 200,
-      renderCell: ({ row }) => (
-        <Badge color="success" style={{ backgroundColor: theme.palette.success.dark, color: '#ffffff', height: '1.7em', borderRadius: '1em', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: 'auto', padding: '0 0.8em', margin: '0.2em', fontSize: '0.9em', marginTop: '0px' }}>
-          01 - ACORDO
-        </Badge>
-      ),
+      renderCell: ({ row }) => {
+        let backgroundColor, textColor;
+      
+        switch (row.status_processo) {
+          case 'ACORDO':
+            backgroundColor = theme.palette.custom.greenCustomLight;
+            textColor = theme.palette.custom.greenCustomDark;
+            break;
+          case 'PROCESSO':
+            backgroundColor = theme.palette.custom.blueCustomLight;
+            textColor = theme.palette.custom.blueCustomDark;
+            break;
+          case 'EM COBRANÇA':
+            backgroundColor = theme.palette.custom.purpleCustomLight;
+            textColor = theme.palette.custom.purpleCustomDark;
+            break;
+        }
+      
+        return (
+          <Badge
+            style={{
+              backgroundColor,
+              color: textColor,
+              height: '1.7em',
+              borderRadius: 3,
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'auto',
+              padding: '0 0.8em',
+              margin: '0.2em',
+              fontSize: '0.9em',
+              marginTop: '0px'
+            }}
+          >
+            {row.status_processo}
+          </Badge>
+        );
+      }
     },
     {
       field: 'actions',
@@ -112,7 +149,7 @@ const App = () => {
         <>
           <Tooltip title="Excluir" arrow>
             <IconButton className="m-0 p-1">
-              <Delete fontSize="small" style={{ color: 'red' }}/>
+              <Delete fontSize="small" style={{ color: 'red' }} />
             </IconButton>
           </Tooltip>
         </>,
@@ -129,7 +166,30 @@ const App = () => {
       cpf_cnpj: '71955631115',
       cidade: 'TUBARÃO',
       uf: 'GO',
-      em_cobranca: 'R$ 3.930,00'
+      em_cobranca: 'R$ 3.930,00',
+      status_processo: 'EM COBRANÇA'
+    },
+    {
+      id: 2,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      razao_social: 'ACELINA MARIA DA CONCEICAO LEITE SILVA',
+      cpf_cnpj: '71955631115',
+      cidade: 'TUBARÃO',
+      uf: 'GO',
+      em_cobranca: 'R$ 3.930,00',
+      status_processo: 'ACORDO'
+    },
+    {
+      id: 3,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      razao_social: 'ACELINA MARIA DA CONCEICAO LEITE SILVA',
+      cpf_cnpj: '71955631115',
+      cidade: 'TUBARÃO',
+      uf: 'GO',
+      em_cobranca: 'R$ 3.930,00',
+      status_processo: 'PROCESSO'
     }
   ];
 
@@ -275,38 +335,6 @@ const App = () => {
                           </Grid>
                         </Grid>
                       </Grid>
-                      {/* <Grid container item spacing={2} justifyContent="flex-end">
-                        <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2}>
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            startIcon={<ClearIcon />}
-                            fullWidth
-                            sx={{
-                              backgroundColor: theme.palette.error.main,
-                              '&:hover': {
-                                backgroundColor: theme.palette.error.dark
-                              },
-                              height: theme.spacing(heightButton)
-                            }}
-                          >
-                            Limpar Filtro
-                          </Button>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 0} md={isMobile ? 12 : 2}>
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            startIcon={<SearchIcon />}
-                            fullWidth
-                            sx={{
-                              height: theme.spacing(heightButton)
-                            }}
-                          >
-                            Pesquisar
-                          </Button>
-                        </Grid>
-                      </Grid> */}
                     </Grid>
                   </form>
                 </Grid>

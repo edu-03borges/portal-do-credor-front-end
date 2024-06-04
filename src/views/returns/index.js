@@ -47,7 +47,6 @@ const Returns = () => {
 
     data.dateRange = selectedDateRange;
 
-    console.log(data);
   };
 
   // Temporary data *****************************************************************************************
@@ -86,41 +85,41 @@ const columns = [
   { field: 'cpfCnpj', align: 'left', headerName: 'CNPJ/CPF', width: 150 },
   { field: 'valorDevolvido', align: 'left', headerName: 'Valor Devolvido', width: 150 },
   { field: 'motivo', align: 'left', headerName: 'Motivo', width: 200,
-    renderCell: ({ row }) => {
-      let backgroundColor, textColor;
-    
-      switch (row.motivo) {
-        case '01.01 - ACORDO':
-          backgroundColor = theme.palette.success.dark;
-          textColor = '#ffffff';
-          break;
-        case '02 - DEVOLUÇÃO':
-          backgroundColor = '#e8eaf6';
-          textColor = '#212529';
-          break;
-      }
-    
-      return (
-        <Badge
-          style={{
-            backgroundColor,
-            color: textColor,
-            height: '1.7em',
-            borderRadius: '1em',
-            display: 'inline-flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 'auto',
-            padding: '0 0.8em',
-            margin: '0.2em',
-            fontSize: '0.9em',
-            marginTop: '0px'
-          }}
-        >
-          {row.motivo}
-        </Badge>
-      );
+  renderCell: ({ row }) => {
+    let backgroundColor, textColor;
+  
+    switch (row.motivo) {
+      case '01.01 - ACORDO':
+        backgroundColor = theme.palette.custom.greenCustomLight;
+        textColor = theme.palette.custom.greenCustomDark;
+        break;
+      case '02 - DEVOLUÇÃO':
+        backgroundColor = theme.palette.custom.blueCustomLight;
+        textColor = theme.palette.custom.blueCustomDark;
+        break;
     }
+  
+    return (
+      <Badge
+        style={{
+          backgroundColor,
+          color: textColor,
+          height: '1.7em',
+          borderRadius: 3,
+          display: 'inline-flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 'auto',
+          padding: '0 0.8em',
+          margin: '0.2em',
+          fontSize: '0.9em',
+          marginTop: '0px'
+        }}
+      >
+        {row.motivo}
+      </Badge>
+    );
+  }
   },
   {
     field: 'actions',

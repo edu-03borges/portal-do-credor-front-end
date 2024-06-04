@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   Box,
@@ -10,22 +11,29 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+  OutlinedInput
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-import { Formik } from "formik";
-import * as Yup from "yup";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { publicIp } from 'public-ip';
+import { apiAuth } from "utils/api";
+import notify from "utils/notify";
+import { userSignInSuccess } from 'actions/auth';
 
-import useScriptRef from "hooks/useScriptRef";
-import AnimateButton from "ui-component/extended/AnimateButton";
+import useScriptRef from 'hooks/useScriptRef';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { useNavigate  } from 'react-router-dom';
 
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -36,14 +44,68 @@ const FirebaseLogin = ({ ...others }) => {
     event.preventDefault();
   };
 
+  const handleLogin = async (username, password) => {
+    let conta = '';
+    let invisible_conta = true;
+    let imagemBackgroud = '';
+
+    let vhost_orig = window.location.hostname;
+    let vhost = window.location.hostname;
+    vhost = vhost.replace('.com.br', '');
+    vhost = vhost.replace('.cobcloud', '');
+    vhost = vhost.replace('portal', '');
+    vhost = vhost.replace('clientes', '');
+    vhost = vhost.replace('cliente', '');
+    vhost = vhost.replace('-', '');
+    vhost = vhost.replace('.', '');
+    vhost = vhost.toUpperCase();
+
+    if (vhost_orig == 'portal.cobcloud.com.br' || vhost_orig == 'localhost') invisible_conta = false;
+
+    if (vhost == 'FACTO') imagemBackgroud = bgfacto;
+    else if (vhost == 'APROCOMBRASIL') imagemBackgroud = bgaprocombr;
+    else if (vhost == 'APROCOMCONSULT') imagemBackgroud = bgaprocomcons;
+
+    if (vhost !== 'LOCALHOST') conta = vhost;
+
+    let meuIP = await publicIp();
+
+    conta = 'SOLIDUZ';
+    
+    const data = {
+      conta,
+      username,
+      password,
+      invisible_conta,
+      meuIP,
+      imagemBackgroud
+    };
+ 
+    try {
+      const response = await apiAuth.post("/login_pc", data);
+
+      if (response.status == 200) {
+        const token = response.data.token;
+  
+        localStorage.setItem('tokenportalcredor', token); 
+
+        dispatch(userSignInSuccess(response.data));
+  
+        navigate('/');
+      }
+    } catch (error) {
+      notify.error(`Erro. ${error.response.data.message}`);
+    }
+  };
+
   return (
     <>
       <Grid container direction="column" justifyContent="center" sx={{ mt: 2, mb: 2 }}>
         <Grid item xs={12}>
           <Box
             sx={{
-              alignItems: "center",
-              display: "flex",
+              alignItems: 'center',
+              display: 'flex'
             }}
           >
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -55,22 +117,22 @@ const FirebaseLogin = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          user: "HAVAN",
-          password: "1234",
-          submit: null,
+          user: 'HAVAN',
+          password: '1234',
+          submit: null
         }}
         validationSchema={Yup.object().shape({
-          user: Yup.string().max(255).required("O usuário é obrigatório"),
-          password: Yup.string().max(255).required("A senha é obrigatória"),
+          user: Yup.string().max(255).required('O usuário é obrigatório'),
+          password: Yup.string().max(255).required('A senha é obrigatória')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
+            await handleLogin(values.user, values.password);
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
             }
           } catch (err) {
-            console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });
               setErrors({ submit: err.message });
@@ -81,11 +143,7 @@ const FirebaseLogin = ({ ...others }) => {
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
-            <FormControl
-              fullWidth
-              error={Boolean(touched.user && errors.user)}
-              sx={{ ...theme.typography.customInput }}
-            >
+            <FormControl fullWidth error={Boolean(touched.user && errors.user)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-user-login">Usuário</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-user-login"
@@ -104,15 +162,11 @@ const FirebaseLogin = ({ ...others }) => {
               )}
             </FormControl>
 
-            <FormControl
-              fullWidth
-              error={Boolean(touched.password && errors.password)}
-              sx={{ ...theme.typography.customInput }}
-            >
+            <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-password-login">Senha</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 value={values.password}
                 name="password"
                 onBlur={handleBlur}
@@ -147,15 +201,7 @@ const FirebaseLogin = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button
-                  disableElevation
-                  disabled={isSubmitting}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                >
+                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
                   Logar
                 </Button>
               </AnimateButton>

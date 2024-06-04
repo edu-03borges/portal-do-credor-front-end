@@ -46,7 +46,6 @@ const Histories = () => {
 
     data.dateRange = selectedDateRange;
 
-    console.log(data);
   };
 
   // Temporary data *****************************************************************************************
@@ -54,9 +53,8 @@ const Histories = () => {
   const columns = [
     {
       field: 'processo',
-      align: 'left',
       headerName: 'Processo',
-      maxWidth: 150,
+      width: 150,
       renderCell: ({ row }) => (
         <Link
           to={`/menu/dashboard`}
@@ -78,36 +76,53 @@ const Histories = () => {
         </Link>
       )
     },
-    { field: 'unidade', align: 'left', headerName: 'Unidade', minWidth: 250 },
-    { field: 'devedor', align: 'left', headerName: 'Devedor', minWidth: 250 },
-    { field: 'cpf_cnpj', align: 'left', headerName: 'CNPJ/CPF', maxWidth: 170 },
-    { field: 'data', align: 'left', headerName: 'Data', maxWidth: 170 },
+    { field: 'unidade', headerName: 'Unidade', width: 250 },
+    { field: 'devedor', headerName: 'Devedor', width: 250 },
+    { field: 'cpf_cnpj', headerName: 'CNPJ/CPF', width: 170 },
+    { field: 'data', headerName: 'Data', width: 170 },
     {
       field: 'status_ocorrencia',
-      align: 'center',
       headerName: 'Status da Ocorrência',
-      maxWidth: 180,
-      renderCell: ({ row }) => (
-        <Badge
-          color="success"
-          style={{
-            backgroundColor: theme.palette.success.dark,
-            color: '#ffffff',
-            height: '1.7em',
-            borderRadius: '1em',
-            display: 'inline-flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 'auto',
-            padding: '0 0.8em',
-            margin: '0.2em',
-            fontSize: '0.9em',
-            marginTop: '0px'
-          }}
-        >
-          01.01 - ACORDO
-        </Badge>
-      )
+      width: 180,
+      renderCell: ({ row }) => {
+        let backgroundColor, textColor;
+      
+        switch (row.status_ocorrencia) {
+          case 'NA FILA':
+            backgroundColor = theme.palette.custom.greenCustomLight;
+            textColor = theme.palette.custom.greenCustomDark;
+            break;
+          case 'PROCESSANDO':
+            backgroundColor = theme.palette.custom.blueCustomLight;
+            textColor = theme.palette.custom.blueCustomDark;
+            break;
+          case 'ANDAMENTO':
+            backgroundColor = theme.palette.custom.purpleCustomLight;
+            textColor = theme.palette.custom.purpleCustomDark;
+            break;
+        }
+      
+        return (
+          <Badge
+            style={{
+              backgroundColor,
+              color: textColor,
+              height: '1.7em',
+              borderRadius: 3,
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'auto',
+              padding: '0 0.8em',
+              margin: '0.2em',
+              fontSize: '0.9em',
+              marginTop: '0px'
+            }}
+          >
+            {row.status_ocorrencia}
+          </Badge>
+        );
+      }
     }
   ];
 
@@ -118,8 +133,36 @@ const Histories = () => {
       unidade: 'ALISSON_CREDOR (JURIDICO)',
       devedor: 'ALESSANDRO SILVA',
       cpf_cnpj: '123.456.789-00',
-      data: '01/01/2021'
-    }
+      data: '01/01/2021',
+      status_ocorrencia: 'PROCESSANDO',
+    },
+    {
+      id: 2,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      devedor: 'ALESSANDRO SILVA',
+      cpf_cnpj: '123.456.789-00',
+      data: '01/01/2021',
+      status_ocorrencia: 'NA FILA',
+    },
+    {
+      id: 3,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      devedor: 'ALESSANDRO SILVA',
+      cpf_cnpj: '123.456.789-00',
+      data: '01/01/2021',
+      status_ocorrencia: 'ANDAMENTO',
+    },
+    {
+      id: 4,
+      processo: '215/14602',
+      unidade: 'ALISSON_CREDOR (JURIDICO)',
+      devedor: 'ALESSANDRO SILVA',
+      cpf_cnpj: '123.456.789-00',
+      data: '01/01/2021',
+      status_ocorrencia: 'ANDAMENTO',
+    },
   ];
 
   // ********************************************************************************************************

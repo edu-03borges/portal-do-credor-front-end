@@ -1,7 +1,8 @@
 import { lazy } from "react";
 
-import MainLayout from "layout/MainLayout";
+
 import Loadable from "ui-component/Loadable";
+import ProtectedRoute from './ProtectedRoute';
 
 const DashboardDefault = Loadable(lazy(() => import("views/dashboard/Default")));
 
@@ -15,7 +16,7 @@ const DocumentQuery = Loadable(lazy(() => import("views/documentQuery")));
 
 const MainRoutes = {
   path: "/",
-  element: <MainLayout />,
+  element: <ProtectedRoute />,
   children: [
     {
       path: "/",

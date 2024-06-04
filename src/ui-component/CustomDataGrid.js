@@ -10,17 +10,16 @@ const StyledDataGridPro = styled(DataGridPro)({
   border: 0,
   fontSize: '12.5px',
   '.MuiDataGrid-filler': {
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#fafafa'
   },
   '.MuiDataGrid-columnHeader': {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fafafa',
     color: '#333',
     display: 'flex',
     alignItems: 'center'
   },
   '.MuiDataGrid-columnHeaderTitle': {
     fontSize: '12.5px',
-    fontWeight: 'bold'
   },
   '.MuiDataGrid-cell': {
     borderBottom: '1px solid #f0f0f0'
@@ -81,6 +80,9 @@ const CustomDataGrid = ({ rows, columns }) => {
         disableRowSelectionOnClick
         disableSelectionOnClick
         autoHeight
+        localeText={{
+          footerTotalRows: 'Total de Linhas:'
+        }}
       />
     </Grid>
   )

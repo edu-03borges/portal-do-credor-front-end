@@ -46,7 +46,6 @@ const Titles = () => {
 
     data.dateRange = selectedDateRange;
 
-    console.log(data);
   };
 
   // Temporary data *****************************************************************************************
@@ -99,16 +98,16 @@ const Titles = () => {
       
         switch (row.status) {
           case 'QUITADO':
-            backgroundColor = theme.palette.success.dark;
-            textColor = '#ffffff';
+            backgroundColor = theme.palette.custom.greenCustomLight;
+            textColor = theme.palette.custom.greenCustomDark;
             break;
           case 'ABERTO':
-            backgroundColor = '#2196f3';
-            textColor = '#ffffff';
+            backgroundColor = theme.palette.custom.blueCustomLight;
+            textColor = theme.palette.custom.blueCustomDark;
             break;
           case 'PARCIAL':
-            backgroundColor = '#00bcd4';
-            textColor = '#ffffff';
+            backgroundColor = theme.palette.custom.purpleCustomLight;
+            textColor = theme.palette.custom.purpleCustomDark;
             break;
         }
       
@@ -118,7 +117,7 @@ const Titles = () => {
               backgroundColor,
               color: textColor,
               height: '1.7em',
-              borderRadius: '1em',
+              borderRadius: 3,
               display: 'inline-flex',
               justifyContent: 'center',
               alignItems: 'center',
